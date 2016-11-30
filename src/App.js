@@ -28,6 +28,7 @@ class App extends Component {
                   registerClicked={this.showRegisterForm.bind(this)} homeClicked={this.showHomeView.bind(this)}
               />
               {this.state.view}
+              <p>TEST SYNC</p>
           </div>
         );
     }
