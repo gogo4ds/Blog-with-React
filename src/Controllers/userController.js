@@ -20,7 +20,7 @@ export default class UserController {
                 appView.setState({
                         username: sessionStorage.getItem('username'),
                         isLogged: true,
-                        view:  <HomeView username={sessionStorage.getItem('username')}/>
+                        view:  <HomeView username={userData.username}/>
                     }
                 );
         });
