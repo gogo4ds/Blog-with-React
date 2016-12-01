@@ -5,8 +5,8 @@ class HomeView extends Component {
         return (
             <div className="Home">
                 {this.props.username ?
-                    <h1>Welcome, {this.props.username}</h1>
-                    : <h1>Welcome, please Login or Register!!!</h1>
+                    <h1>Welcomeee, {this.props.username}</h1>
+                    : <h1>HELLO , please Login or Register!!!</h1>
                 }
             </div>
         );

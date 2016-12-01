@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-
 //import components
 import Header from './Components/Header'
 import LoginForm from './Components/LoginForm'
 import RegisterForm from './Components/RegisterForm'
-
 //import views
 import HomeView from './Views/HomeView'
+//import controllers
+import UserController from './Controllers/UserController'
 
 class App extends Component {
     constructor(){
@@ -16,7 +16,8 @@ class App extends Component {
             isLogged: false,
             username: null,
             view: <HomeView/>,
-        }
+        };
+        this.userController = new UserController(this);
     }
 
     render() {
@@ -27,33 +28,18 @@ class App extends Component {
                   logoutClicked={this.logoutUser.bind(this)}
                   registerClicked={this.showRegisterForm.bind(this)}
                   homeClicked={this.showHomeView.bind(this)}
+
+                  logoutClicked={this.handleLogout.bind(this)}
+                  registerClicked={this.showRegisterForm.bind(this)} homeClicked={this.showHomeView.bind(this)}
               />
               {this.state.view}
           </div>
         );
     }
 
-    loginUser(){
-      sessionStorage.setItem('username', 'Pesho');
-        this.setState({
-            username: sessionStorage.getItem('username'),
-            isLogged: true,
-            view:  <HomeView username={sessionStorage.getItem('username')}/>
-        })
-    }
-
     showLoginForm(){
         this.setState({
-            view: <LoginForm loginClicked={this.loginUser.bind(this)}/>
-        })
-    }
-
-    logoutUser(){
-      sessionStorage.clear();
-        this.setState({
-            username: sessionStorage.getItem('username'),
-            isLogged: false,
-            view: <HomeView/>
+            view: <LoginForm loginClicked={this.handleLogin.bind(this)}/>
         })
     }
 
@@ -68,6 +54,10 @@ class App extends Component {
             view: <HomeView username={this.state.username}/>
         })
     }
+
+    handleLogin(){this.userController.login()}
+
+    handleLogout(){this.userController.logout()}
 }
 
 export default App;
