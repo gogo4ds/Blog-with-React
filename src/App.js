@@ -9,13 +9,14 @@ import RegisterForm from './Components/RegisterForm'
 //import views
 import HomeView from './Views/HomeView'
 
-//import utils
-import Requester from './utilities/KinveyRequester'
-let kinveyRequester = new Requester();
+//import controllers
+import UserController from './Controllers/UserController'
+
 
 const appKey = 'kid_ryzXtnZfl';
 const appSecret = '8e5cbe23218047719f9a928422e0dc73';
 const baseUrl = 'https://baas.kinvey.com/';
+
 
 class App extends Component {
     constructor(){
@@ -41,24 +42,8 @@ class App extends Component {
     }
 
     handleLogin(){
-        let that = this;
-        let url = baseUrl + 'user/' + appKey + '/login';
-        let authorization = 'Basic ' + btoa(appKey+":"+appSecret);
-        let data = {
-            username: 'ddsdsada',
-            password: 'a'
-        };
-        kinveyRequester.ajaxPOST(url, authorization, data).then(function (success) {
-            sessionStorage.setItem('username', success.username);
-            sessionStorage.setItem('authToken', success._kmd.authtoken);
-            that.setState({
-                username: sessionStorage.getItem('username'),
-                isLogged: true,
-                view:  <HomeView username={sessionStorage.getItem('username')}/>
-            })
-        }).catch(function (err) {
-            console.log(err);
-        });
+        let userController=new UserController(this,baseUrl,appKey,appSecret);
+        userController.login();
     }
 
     showLoginForm(){
