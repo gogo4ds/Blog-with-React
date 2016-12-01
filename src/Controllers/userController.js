@@ -1,44 +1,38 @@
-import Requester from '../utilities/KinveyRequester';
 import React from 'react';
 import HomeView from '../Views/HomeView';
+import UserModel from '../Models/UserModel';
+import Session from '../utilities/sessionStorageManager'
 
-export default class User {
-    constructor(AppView,baseUrl,appKey,appSecret){
+export default class UserController {
+    constructor(AppView){
         this.appView=AppView;
-        this._requester=new Requester();
-        this._baseUrl=baseUrl;
-        this._appKey=appKey;
-        this._appSecret=appSecret;
     }
 
     login(){
-        let appView=this.appView;
-        let url = this._baseUrl + 'user/' + this._appKey + '/login';
-        let authorization = 'Basic ' + btoa(this._appKey +":"+this._appSecret);
+        let appView = this.appView;
         let data = {
-            username: 'a',
-            password: 'a'
+            username: 'guest',
+            password: 'guest'
         };
-        this._requester.ajaxPOST(url, authorization, data)
-            .then(loginSuccess).catch(function (err) {
-            console.log(err);
+        UserModel.loginUser(data)
+            .then(function (userData) {
+                Session.save(userData);
+                appView.setState({
+                        username: sessionStorage.getItem('username'),
+                        isLogged: true,
+                        view:  <HomeView username={sessionStorage.getItem('username')}/>
+                    }
+                );
         });
-
-        function loginSuccess(successData) {
-            sessionStorage.setItem('username', successData.username);
-            sessionStorage.setItem('authToken', successData._kmd.authtoken);
-            appView.setState(
-                {
-                    username: sessionStorage.getItem('username'),
-                    isLogged: true,
-                    view:  <HomeView username={sessionStorage.getItem('username')}/>
-                }
-            );
-        }
     }
 
     logout(){
-
+        Session.clear();
+        this.appView.setState({
+            username: sessionStorage.getItem('username'),
+            isLogged: false,
+            view: <HomeView/>
+        })
     }
 
     register(){
