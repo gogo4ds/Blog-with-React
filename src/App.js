@@ -24,13 +24,10 @@ class App extends Component {
     return (
           <div className="App">
               <Header isLogged={this.state.isLogged}
-                  loginClicked={this.showLoginForm.bind(this)}
-                  logoutClicked={this.logoutUser.bind(this)}
-                  registerClicked={this.showRegisterForm.bind(this)}
-                  homeClicked={this.showHomeView.bind(this)}
-
-                  logoutClicked={this.handleLogout.bind(this)}
-                  registerClicked={this.showRegisterForm.bind(this)} homeClicked={this.showHomeView.bind(this)}
+                      loginClicked={this.showLoginForm.bind(this)}
+                      logoutClicked={this.handleLogout.bind(this)}
+                      registerClicked={this.showRegisterForm.bind(this)}
+                      homeClicked={this.showHomeView.bind(this)}
               />
               {this.state.view}
           </div>
