@@ -25,7 +25,8 @@ class App extends Component {
               <Header isLogged={this.state.isLogged}
                   loginClicked={this.showLoginForm.bind(this)}
                   logoutClicked={this.logoutUser.bind(this)}
-                  registerClicked={this.showRegisterForm.bind(this)} homeClicked={this.showHomeView.bind(this)}
+                  registerClicked={this.showRegisterForm.bind(this)}
+                  homeClicked={this.showHomeView.bind(this)}
               />
               {this.state.view}
           </div>
