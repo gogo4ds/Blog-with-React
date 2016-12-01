@@ -1,40 +1,63 @@
 import $ from 'jquery'
+import errorHandler from '../utilities/errorHandler'
+
+const appKey = 'kid_ryzXtnZfl';
+const appSecret = '8e5cbe23218047719f9a928422e0dc73';
+const baseUrl = 'https://baas.kinvey.com/';
+const basicAuthBase64 = btoa(appKey+":"+appSecret);
+const kinveyAuthBase64 = btoa(appKey+":"+sessionStorage.getItem('authToken'));
+
 
 export default class Requester {
+    constructor(authType) {
+        switch (authType) {
+            case 'Basic':
+                this.authorization = {Authorization: 'Basic ' + basicAuthBase64};
+                break;
+            case 'Kinvey':
+                this.authorization = {Authorization: 'Kinvey ' + kinveyAuthBase64};
+                break;
+            default: console.log('wrong authorization in request'); break;
+        }
+    }
 
-    ajaxGET(url, authorizationHeader){
+    ajaxGET(module, uri){
         return $.ajax({
             method: 'GET',
-            url: url,
-            headers: authorizationHeader
+            url: `${baseUrl + module}/${appKey}/${uri}`,
+            headers: this.authorization,
+            error: errorHandler.handleAjaxError
         })
     }
 
-    ajaxPOST(url, authorizationHeader, data){
+    ajaxPOST(module, uri, data){
         return $.ajax({
             method: 'POST',
-            url: url,
-            headers: {Authorization : authorizationHeader},
+            url: `${baseUrl + module}/${appKey}/${uri}`,
+            headers: this.authorization,
             data: JSON.stringify(data),
-            contentType: 'application/json'
+            contentType: 'application/json',
+            error: errorHandler.handleAjaxError
         })
     }
 
-    ajaxPUT(url, authorizationHeader, data){
+    ajaxPUT(module, uri, id, data){
         return $.ajax({
             method: 'PUT',
-            url: url,
-            headers: authorizationHeader,
+            url: `${baseUrl + module}/${appKey}/${uri}/${id}`,
+            headers: this.authorization,
             data: JSON.stringify(data),
-            contentType: 'application/json'
+            contentType: 'application/json',
+            error: errorHandler.handleAjaxError
         })
     }
 
-    ajaxDELETE(url, authorizationHeader){
+    ajaxDELETE(module, uri, id){
         return $.ajax({
             method: 'GET',
-            url: url,
-            headers: authorizationHeader
+            url: `${baseUrl + module}/${appKey}/${uri}/${id}`,
+            headers: this.authorization,
+            error: errorHandler.handleAjaxError
         })
     }
 }
