@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e742010-87c8-446d-9855-e76c031c5798" name="Default" comment="" />
+    <list default="true" id="8e742010-87c8-446d-9855-e76c031c5798" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Views/HomeView.js" afterPath="$PROJECT_DIR$/src/Views/HomeView.js" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -46,8 +48,8 @@
       <file leaf-file-name="HomeView.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Views/HomeView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="10" lean-forward="true" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+            <state relative-caret-position="119">
+              <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -210,12 +212,12 @@
       <updated>1480542797822</updated>
       <workItem from="1480542799194" duration="68000" />
       <workItem from="1480544315516" duration="1410000" />
-      <workItem from="1480595999617" duration="45000" />
+      <workItem from="1480595999617" duration="411000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1523000" />
+    <option name="totallyTimeSpent" value="1889000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -297,8 +299,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Views/HomeView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="10" lean-forward="true" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+        <state relative-caret-position="119">
+          <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
           <folding />
         </state>
       </provider>
