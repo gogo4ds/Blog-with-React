@@ -8,7 +8,7 @@ class Header extends Component {
             <header className="Header">
                 <div className="nav">
                     {!this.props.isLogged ?  <ul>
-                        <li className="home"><Link to="/">Home</Link></li>
+                        <li className="home"><Link to="/home">Home</Link></li>
                         <li className="login"><Link to="/login">Login</Link></li>
                         <li className="register"><Link to="/register">Register</Link></li>
                     </ul> :

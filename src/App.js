@@ -8,9 +8,7 @@ class App extends Component {
         super();
         this.state = {
             isLogged: false,
-            username: null,
-            userId: null,
-            authToken: null
+            username: null
         };
     }
 

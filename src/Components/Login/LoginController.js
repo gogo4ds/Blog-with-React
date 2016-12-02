@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LoginForm from './LoginForm'
 import UserModel from '../../Models/UserModel'
 import Session from '../../utilities/sessionStorageManager'
+import {browserHistory} from 'react-router'
 
 export default class LoginController extends Component {
     constructor(props){
@@ -32,6 +33,7 @@ export default class LoginController extends Component {
         };
         UserModel.loginUser(userData).then(function (response) {
             Session.save(response);
+            browserHistory.push('/');
         });
     }
 
