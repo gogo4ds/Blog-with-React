@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import RegisterForm from './RegisterForm'
 import UserModel from '../../Models/UserModel';
 import Session from '../../utilities/sessionStorageManager';
+import observer from '../../utilities/observer';
+import {browserHistory} from 'react-router';
 
 export default class RegisterController extends Component {
     constructor(props){
@@ -36,7 +38,9 @@ export default class RegisterController extends Component {
         let data={username:this.state.username,password:this.state.password};
         UserModel.registerUser(data)
             .then(function (response) {
-                Session.save(response)
+                Session.save(response);
+                observer.sessionChange();
+                browserHistory.push('/home')
             });
     }
 

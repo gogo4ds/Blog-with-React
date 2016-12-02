@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 //import components
 import Header from './Components/Common/Header'
+import observer from '../src/utilities/observer'
 
 class App extends Component {
     constructor(){
@@ -10,6 +11,23 @@ class App extends Component {
             isLogged: false,
             username: null
         };
+
+        this.sessionChange = this.sessionChange.bind(this);
+        observer.sessionChange = this.sessionChange;
+    }
+
+    sessionChange(){
+        if(sessionStorage.getItem('userID')){
+            this.setState({
+                isLogged: true,
+                username: sessionStorage.getItem('username')
+            })
+        }else{
+            this.setState({
+                isLogged: false,
+                username: null
+            })
+        }
     }
 
     render() {

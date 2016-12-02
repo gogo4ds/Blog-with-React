@@ -4,8 +4,8 @@ class HomeView extends Component {
     render() {
         return (
             <div className="Home">
-                {this.props.username ?
-                    <h1>Welcome, {this.props.username}</h1>
+                {sessionStorage.getItem('username') ?
+                    <h1>Welcome, {sessionStorage.getItem('username')}</h1>
                     : <h1>HELLO , please Login or Register!!!</h1>
                 }
             </div>
