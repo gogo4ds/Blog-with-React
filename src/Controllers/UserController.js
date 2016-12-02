@@ -8,17 +8,35 @@ export default class UserController {
         this.appView=AppView;
     }
 
-    login(){
-        let appView = this.appView;
+    register(username, password){
+        let that = this;
         let data = {
-            username: 'guest',
-            password: 'guest'
+            username: username,
+            password: password
+        };
+        UserModel.registerUser(data)
+            .then(function (userData) {
+                Session.save(userData);
+                that.appView.setState({
+                        username: userData.username,
+                        isLogged: true,
+                        view:  <HomeView username={userData.username}/>
+                    }
+                );
+            });
+    }
+
+    login(username, password){
+        let that = this;
+        let data = {
+            username: username,
+            password: password
         };
         UserModel.loginUser(data)
             .then(function (userData) {
                 Session.save(userData);
-                appView.setState({
-                        username: sessionStorage.getItem('username'),
+                that.appView.setState({
+                        username: userData.username,
                         isLogged: true,
                         view:  <HomeView username={userData.username}/>
                     }
@@ -26,16 +44,13 @@ export default class UserController {
         });
     }
 
-    logout(){
+    logout(authToken){
+        UserModel.logoutUser();
         Session.clear();
         this.appView.setState({
             username: sessionStorage.getItem('username'),
             isLogged: false,
             view: <HomeView/>
         })
-    }
-
-    register(){
-
     }
 }

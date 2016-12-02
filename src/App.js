@@ -25,7 +25,7 @@ class App extends Component {
           <div className="App">
               <Header isLogged={this.state.isLogged}
                       loginClicked={this.showLoginForm.bind(this)}
-                      logoutClicked={this.handleLogout.bind(this)}
+                      logoutClicked={this.logoutUser.bind(this)}
                       registerClicked={this.showRegisterForm.bind(this)}
                       homeClicked={this.showHomeView.bind(this)}
               />
@@ -36,13 +36,13 @@ class App extends Component {
 
     showLoginForm(){
         this.setState({
-            view: <LoginForm loginClicked={this.handleLogin.bind(this)}/>
+            view: <LoginForm onsubmit={this.loginUser.bind(this)}/>
         })
     }
 
     showRegisterForm(){
         this.setState({
-            view: <RegisterForm />
+            view: <RegisterForm onsubmit={this.registerUser.bind(this)}/>
         })
     }
 
@@ -52,9 +52,17 @@ class App extends Component {
         })
     }
 
-    handleLogin(){this.userController.login()}
+    registerUser(username, password){
+        this.userController.register(username, password)
+    }
 
-    handleLogout(){this.userController.logout()}
+    loginUser(username, password){
+        this.userController.login(username, password)
+    }
+
+    logoutUser(){
+        this.userController.logout()
+    }
 }
 
 export default App;

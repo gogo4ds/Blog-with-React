@@ -1,11 +1,10 @@
 import $ from 'jquery'
 import errorHandler from '../utilities/errorHandler'
 
-const appKey = 'kid_ryzXtnZfl';
-const appSecret = '8e5cbe23218047719f9a928422e0dc73';
+const appKey = 'kid_r15MCj0Mx';
+const appSecret = 'fa4ad2bea7ea4565aee56ff4511ed329';
 const baseUrl = 'https://baas.kinvey.com/';
 const basicAuthBase64 = btoa(appKey+":"+appSecret);
-const kinveyAuthBase64 = btoa(appKey+":"+sessionStorage.getItem('authToken'));
 
 
 export default class Requester {
@@ -15,7 +14,7 @@ export default class Requester {
                 this.authorization = {Authorization: 'Basic ' + basicAuthBase64};
                 break;
             case 'Kinvey':
-                this.authorization = {Authorization: 'Kinvey ' + kinveyAuthBase64};
+                this.authorization = {Authorization: 'Kinvey ' + sessionStorage.getItem('authToken')};
                 break;
             default: console.log('wrong authorization in request'); break;
         }
