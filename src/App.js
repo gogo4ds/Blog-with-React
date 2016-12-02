@@ -22,13 +22,6 @@ class App extends Component {
           </div>
         );
     }
-        return (
-              <div className="App">
-                  <Header isLogged={this.state.isLogged}/>
-                  {this.props.children}
-              </div>
-            );
-        }
 }
 
 export default App;
