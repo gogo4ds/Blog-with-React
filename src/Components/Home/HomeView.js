@@ -6,7 +6,7 @@ class HomeView extends Component {
             <div className="Home">
                 {sessionStorage.getItem('username') ?
                     <h1>Welcome, {sessionStorage.getItem('username')}</h1>
-                    : <h1>HELLO , please Login or Register!!!</h1>
+                    : <h1>Welcome , please Login or Register!!!</h1>
                 }
             </div>
         );
