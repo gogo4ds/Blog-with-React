@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 //import components
-import Header from './Components/Common/Header'
-import observer from '../src/utilities/observer'
-import Breadcrumbs from 'react-breadcrumbs'
-import Alert from 'react-s-alert'
+import Header from './Components/Common/Header';
+import Footer from './Components/Common/Footer';
+import observer from '../src/utilities/observer';
+import Breadcrumbs from 'react-breadcrumbs';
+import Alert from 'react-s-alert';
 
 class App extends Component {
     constructor(){
@@ -39,6 +40,7 @@ class App extends Component {
               <Breadcrumbs routes={this.props.routes} params={this.props.params} setDocumentTitle={true}/>
               {this.props.children}
               <Alert stack={{limit: 3}} />
+              <Footer/>
           </div>
         );
     }

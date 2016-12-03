@@ -24,7 +24,7 @@ ReactDOM.render(
             <Route name="Register" path="/register" component={Register}/>
             <Route name="Logout" path="/logout" component={Logout}/>
             <Route name="Posts" path="/posts" component={Posts}/>
-                <Route name="Post" path="/posts/:postID" component={SinglePostController}/>
+            <Route name="Post" path="/posts/:postID" component={SinglePostController}/>
             <Route name="Create Post" path="/create-post" component={CreatePost}/>
         </Route>
     </Router>,
