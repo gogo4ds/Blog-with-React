@@ -15,7 +15,6 @@ export default class CreatePostController extends Component{
     render() {
         return (
             <div>
-                <h1>Create Post</h1>
                 <CreatePostForm
                     title={this.state.title}
                     author={this.state.author}
@@ -37,7 +36,7 @@ export default class CreatePostController extends Component{
         };
         create(data)
             .then(function (response) {
-                browserHistory.push('/');
+                browserHistory.push('/posts');
             })
     }
 
