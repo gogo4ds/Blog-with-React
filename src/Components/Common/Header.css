@@ -24,7 +24,6 @@
 .nav a:hover {
     background-color: #37a69b;
     color: #fff;
-    font-size: 1.1em;
     text-decoration: none;
 }
 
@@ -32,7 +31,6 @@
     background-color: #37a69b;
     text-decoration: none !important;
     color: #fbfcf3 !important;
-    font-size: 1.1em;
 }
 
 @media screen and (min-width: 600px) {

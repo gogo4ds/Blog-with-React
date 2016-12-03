@@ -3,6 +3,7 @@ import './App.css';
 //import components
 import Header from './Components/Common/Header'
 import observer from '../src/utilities/observer'
+import Breadcrumbs from 'react-breadcrumbs'
 
 class App extends Component {
     constructor(){
@@ -34,6 +35,7 @@ class App extends Component {
     return (
           <div className="App">
               <Header isLogged={this.state.isLogged}/>
+              <Breadcrumbs routes={this.props.routes} params={this.props.params} setDocumentTitle={true}/>
               {this.props.children}
           </div>
         );

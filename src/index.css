@@ -3,3 +3,14 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.breadcrumbs {
+  color: #139aa6;
+  text-decoration: none;
+  font-family: "Century Gothic", "serif", "sans-serif";
+}
+
+.breadcrumbs a{
+  color: #139aa6;
+  font-family: "Century Gothic", "serif", "sans-serif";
+}

@@ -10,12 +10,12 @@ import Logout from './Components/Logout/LogoutController'
 
 ReactDOM.render(
     <Router history={browserHistory}>
-        <Route path="/" component={App}>
-            <IndexRoute component={Home}/>
-            <Route path="/home" component={Home}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/register" component={Register}/>
-            <Route path="/logout" component={Logout}/>
+        <Route name="WebStep" path="/" component={App}>
+            <IndexRoute name="Home" component={Home}/>
+            <Route name="Home" path="/home" component={Home}/>
+            <Route name="Login" path="/login" component={Login}/>
+            <Route name="Register" path="/register" component={Register}/>
+            <Route name="Logout" path="/logout" component={Logout}/>
         </Route>
     </Router>,
   document.getElementById('root')
