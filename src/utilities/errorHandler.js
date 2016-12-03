@@ -8,7 +8,7 @@ let errorHandler = {
         if (reason.responseJSON &&
             reason.responseJSON.description)
             errorMsg = reason.responseJSON.description;
-        Alert.error(errorMsg, {timeout: false, position: 'top'})
+        Alert.error(errorMsg, {timeout: false, position: 'top', offset: 50})
     }
 };
 
