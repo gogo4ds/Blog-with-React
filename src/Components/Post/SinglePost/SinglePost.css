@@ -1,0 +1,45 @@
+.post-author {
+    color: #135d69;
+    float: left;
+}
+
+.single-post .post-body {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.post-title {
+    margin-top: -30px;
+    margin-bottom: 10px;
+}
+
+.post-date {
+    color: #135d69;
+    float: left;
+}
+
+.single-post {
+    width: 400px;
+    height: auto;
+    margin: 60px 60px 90px 90px;
+    border: solid #42464b 2px;
+    padding: 20px 20px;
+    float: left;
+}
+
+.post link {
+    margin-bottom: 100px;
+}
+
+.posts-view h1{
+    margin: auto;
+    width: 200px;
+    font-size: 2.2em;
+    position: relative;
+    padding: 1%;
+    display: block;
+}
+
+.single-post button {
+    margin: 5px;
+}

@@ -17,7 +17,7 @@ export default class AllPostsController extends Component {
         let posts = [];
         requester.ajaxGET('appdata', 'posts').then(function (success) {
             for(let post of success){
-                posts.push(<Post key={post._id} title={post.title} body={post.body} author={post.author} date={post.date}/>)
+                posts.push(<Post key={post._id} id={post._id} title={post.title} body={post.body} author={post.author} date={post.date}/>)
             }
             _self.setState({
                 posts: posts

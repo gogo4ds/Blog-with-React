@@ -20,10 +20,10 @@ export default class Requester {
         }
     }
 
-    ajaxGET(module, uri){
+    ajaxGET(module, uri, id=''){
         return $.ajax({
             method: 'GET',
-            url: `${baseUrl + module}/${appKey}/${uri}`,
+            url: `${baseUrl + module}/${appKey}/${uri}/${id}`,
             headers: this.authorization,
             error: errorHandler.handleAjaxError
         })

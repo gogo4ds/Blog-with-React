@@ -13,6 +13,7 @@ import Register from './Components/Register/RegisterController'
 import Logout from './Components/Logout/LogoutController'
 import Posts from './Components/Post/AllPosts/AllPostsController'
 import CreatePost from './Components/Post/Create/CreatePostController';
+import SinglePostController from './Components/Post/SinglePost/SinglePostController'
 
 ReactDOM.render(
     <Router history={browserHistory}>
@@ -23,6 +24,7 @@ ReactDOM.render(
             <Route name="Register" path="/register" component={Register}/>
             <Route name="Logout" path="/logout" component={Logout}/>
             <Route name="Posts" path="/posts" component={Posts}/>
+                <Route name="Post" path="/posts/:postID" component={SinglePostController}/>
             <Route name="Create Post" path="/create-post" component={CreatePost}/>
         </Route>
     </Router>,
