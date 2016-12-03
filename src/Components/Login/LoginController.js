@@ -18,12 +18,17 @@ export default class LoginController extends Component {
     }
 
     render() {
-        return <LoginForm
-            username={this.state.username}
-            password={this.state.password}
-            onChangeHandler={this.onChangeHandler}
-            onSubmitHandler={this.onSubmitHandler}
-        />
+        return (
+            <div>
+                <h1>Login Form</h1>
+                <LoginForm
+                username={this.state.username}
+                password={this.state.password}
+                onChangeHandler={this.onChangeHandler}
+                onSubmitHandler={this.onSubmitHandler}
+                />
+            </div>
+        )
     }
 
     onSubmitHandler(ev){

@@ -8,14 +8,14 @@ class Header extends Component {
             <header className="Header">
                 <div className="nav">
                     {!this.props.isLogged ?  <ul>
-                        <li className="home"><Link to="/home">Home</Link></li>
-                        <li className="login"><Link to="/login">Login</Link></li>
-                        <li className="register"><Link to="/register">Register</Link></li>
+                        <li className="home"><Link to="/home" activeClassName="active-nav">Home</Link></li>
+                        <li className="login"><Link to="/login" activeClassName="active-nav">Login</Link></li>
+                        <li className="register"><Link to="/register" activeClassName="active-nav">Register</Link></li>
                     </ul> :
                         <ul>
-                            <li className="home"><Link to="/home">Home</Link></li>
-                            <li className="posts"><Link to="/posts">Posts</Link></li>
-                            <li className="create-post"><Link to="/create">Create</Link></li>
+                            <li className="home"><Link to="/home" activeClassName="active-nav">Home</Link></li>
+                            <li className="posts"><Link to="/posts" activeClassName="active-nav">Posts</Link></li>
+                            <li className="create-post"><Link to="/create" activeClassName="active-nav">Create</Link></li>
                             <li className="logout"><Link to="/logout">Logout</Link></li>
                         </ul>}
                 </div>
