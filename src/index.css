@@ -5,7 +5,7 @@ body {
 }
 
 .breadcrumbs {
-  color: #139aa6;
+  color: #13737f;
   text-decoration: none;
   font-family: "Century Gothic", "serif", "sans-serif";
   float: left;
@@ -14,6 +14,6 @@ body {
 }
 
 .breadcrumbs a{
-  color: #139aa6;
+  color: #13737f;
   font-family: "Century Gothic", "serif", "sans-serif";
 }
