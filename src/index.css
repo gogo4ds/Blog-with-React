@@ -8,6 +8,9 @@ body {
   color: #139aa6;
   text-decoration: none;
   font-family: "Century Gothic", "serif", "sans-serif";
+  float: left;
+  padding-left: 15px;
+  display: inline;
 }
 
 .breadcrumbs a{
