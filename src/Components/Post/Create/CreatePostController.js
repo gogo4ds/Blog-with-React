@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CreatePostForm from './CreatePostForm';
 import {create} from '../../../Models/PostModel';
 import {browserHistory} from 'react-router';
+import Alert from 'react-s-alert';
 
 export default class CreatePostController extends Component{
     constructor(props) {
@@ -36,8 +37,10 @@ export default class CreatePostController extends Component{
         };
         create(data)
             .then(function (response) {
-                browserHistory.push('/posts');
-            })
+                Alert.closeAll();
+                Alert.success('Post created !', {timeout: 2000});
+                browserHistory.push('/posts')
+            });
     }
 
     handleChange(event) {
