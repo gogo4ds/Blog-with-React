@@ -15,7 +15,7 @@ class Header extends Component {
                         <ul>
                             <li className="home"><Link to="/home" activeClassName="active-nav">Home</Link></li>
                             <li className="posts"><Link to="/posts" activeClassName="active-nav">Posts</Link></li>
-                            <li className="create-post"><Link to="/create" activeClassName="active-nav">Create</Link></li>
+                            <li className="create-post"><Link to="/create-post" activeClassName="active-nav">Create Post</Link></li>
                             <li className="logout"><Link to="/logout">Logout</Link></li>
                         </ul>}
                 </div>
