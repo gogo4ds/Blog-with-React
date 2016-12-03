@@ -34,7 +34,7 @@ export default class AllPostsController extends Component {
                 </div>
             )
         }
-        return <div>Loading...</div>;
+        return <div className="alert alert-success" role="alert">Loading...</div>;
         //TODO: insert loading box
     }
 }

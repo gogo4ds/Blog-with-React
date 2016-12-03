@@ -4,6 +4,9 @@ import App from './App';
 import './index.css';
 import {IndexRoute, Router, Route, browserHistory} from 'react-router'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/slide.css';
+import 'react-s-alert/dist/s-alert-css-effects/bouncyflip.css';
 import Home from './Components/Home/HomeView'
 import Login from './Components/Login/LoginController'
 import Register from './Components/Register/RegisterController'

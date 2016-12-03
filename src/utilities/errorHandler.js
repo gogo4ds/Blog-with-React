@@ -1,15 +1,6 @@
-//import $ from 'jquery';
+import Alert from 'react-s-alert'
 
 let errorHandler = {
-    showError: function (errorMsg) {
-        // $('#errorBox').fadeIn().text(errorMsg);
-        // $('#errorBox').on('click', function () {
-        //     $('#errorBox').hide();
-        // })
-        console.log(errorMsg);
-        //TODO: display some error box
-    },
-
     handleAjaxError: function (reason) {
         let errorMsg = JSON.stringify(reason);
         if (reason.readyState === 0)
@@ -17,7 +8,7 @@ let errorHandler = {
         if (reason.responseJSON &&
             reason.responseJSON.description)
             errorMsg = reason.responseJSON.description;
-        errorHandler.showError(errorMsg);
+        Alert.error(errorMsg, {timeout: false, position: 'top'})
     }
 };
 

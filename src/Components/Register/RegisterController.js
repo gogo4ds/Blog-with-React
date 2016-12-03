@@ -4,6 +4,7 @@ import UserModel from '../../Models/UserModel';
 import Session from '../../utilities/sessionStorageManager';
 import observer from '../../utilities/observer';
 import {browserHistory} from 'react-router';
+import Alert from 'react-s-alert'
 
 export default class RegisterController extends Component {
     constructor(props){
@@ -40,6 +41,8 @@ export default class RegisterController extends Component {
             .then(function (response) {
                 Session.save(response);
                 observer.sessionChange();
+                Alert.closeAll();
+                Alert.success('Successfully logged in', {timeout: 2000});
                 browserHistory.push('/home')
             });
     }
