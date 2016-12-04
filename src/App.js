@@ -10,7 +10,6 @@ class App extends Component {
     constructor(){
         super();
         this.state = {
-            isLogged: false,
             username: null
         };
 
@@ -21,12 +20,10 @@ class App extends Component {
     sessionChange(){
         if(sessionStorage.getItem('userID')){
             this.setState({
-                isLogged: true,
                 username: sessionStorage.getItem('username')
             })
         }else{
             this.setState({
-                isLogged: false,
                 username: null
             })
         }
@@ -35,7 +32,7 @@ class App extends Component {
     render() {
     return (
           <div className="App">
-              <Header isLogged={this.state.isLogged}/>
+              <Header/>
               <Breadcrumbs routes={this.props.routes} params={this.props.params} setDocumentTitle={true}/>
               {this.props.children}
               <Alert stack={{limit: 3}} />

@@ -7,7 +7,7 @@ class Header extends Component {
         return (
             <header className="Header">
                 <div className="nav">
-                    {!this.props.isLogged ?  <ul>
+                    {!sessionStorage.getItem('username') ?  <ul>
                         <li className="home"><Link to="/home" activeClassName="active-nav">Home</Link></li>
                         <li className="login"><Link to="/login" activeClassName="active-nav">Login</Link></li>
                         <li className="register"><Link to="/register" activeClassName="active-nav">Register</Link></li>
