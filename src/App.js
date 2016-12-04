@@ -40,7 +40,6 @@ class App extends Component {
               <Breadcrumbs routes={this.props.routes} params={this.props.params} setDocumentTitle={true}/>
               {this.props.children}
               <Alert stack={{limit: 3}} />
-              <Footer/>
           </div>
         );
     }
