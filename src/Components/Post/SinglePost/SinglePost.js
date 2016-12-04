@@ -1,8 +1,28 @@
 import React, { Component } from 'react';
 import {browserHistory} from 'react-router';
+import Requester from '../../../utilities/KinveyRequester'
 import './SinglePost.css'
+import '../AllPosts/AllPosts.css'
 
 export default class SinglePost extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            comments: null
+        }
+    }
+
+    componentDidMount(){
+        let requester = new Requester('Kinvey');
+        let that = this;
+        let postID = '' + this.props.id;
+        requester.ajaxGET('appdata', `comments/?query={"postID":"${postID}"}`).then(function (success) {
+            that.setState({
+                comments: success.length
+            })
+        })
+    }
+
     render() {
         return (
                 <div className="single-post">
@@ -21,6 +41,7 @@ export default class SinglePost extends Component {
                         </div>
                         :null
                     }
+                    <span className="comments-counter glyphicon glyphicon-comment"> Comments: {this.state.comments}</span>
                 </div>
         );
     }

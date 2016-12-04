@@ -7,7 +7,7 @@ export default class AllPostsController extends Component {
     constructor(props){
         super(props);
         this.state ={
-            posts: null
+            posts: null,
         }
     }
 
@@ -23,7 +23,8 @@ export default class AllPostsController extends Component {
                                  body={post.body}
                                  author={post.author}
                                  date={post.date}
-                                 postCreator={post._acl.creator}/>)
+                                 postCreator={post._acl.creator}
+                />);
             }
             _self.setState({
                 posts: posts
@@ -32,7 +33,6 @@ export default class AllPostsController extends Component {
     }
 
     render() {
-
         if(this.state.posts){
             return (
                 <div className="posts-view">

@@ -20,13 +20,22 @@ export default class Requester {
         }
     }
 
-    ajaxGET(module, uri, id=''){
-        return $.ajax({
-            method: 'GET',
-            url: `${baseUrl + module}/${appKey}/${uri}/${id}`,
-            headers: this.authorization,
-            error: errorHandler.handleAjaxError
-        })
+    ajaxGET(module, uri, id){
+        if(id){
+            return $.ajax({
+                method: 'GET',
+                url: `${baseUrl + module}/${appKey}/${uri}/${id}`,
+                headers: this.authorization,
+                error: errorHandler.handleAjaxError
+            })
+        }else{
+            return $.ajax({
+                method: 'GET',
+                url: `${baseUrl + module}/${appKey}/${uri}`,
+                headers: this.authorization,
+                error: errorHandler.handleAjaxError
+            })
+        }
     }
 
     ajaxPOST(module, uri, data){

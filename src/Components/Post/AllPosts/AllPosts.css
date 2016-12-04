@@ -44,3 +44,9 @@
     padding-top: 15px;
     margin-bottom: -10px;
 }
+
+.comments-counter {
+    float: left;
+    padding-top: 15px;
+    color: #3a7447;
+}
