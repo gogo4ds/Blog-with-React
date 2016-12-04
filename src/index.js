@@ -15,6 +15,7 @@ import Posts from './Components/Post/AllPosts/AllPostsController'
 import CreatePost from './Components/Post/Create/CreatePostController';
 import SinglePostController from './Components/Post/SinglePost/SinglePostController'
 import EditPostController from './Components/Post/Edit/EditPostController';
+import SinglePost from './Components/Post/SinglePost/SinglePostController'
 
 ReactDOM.render(
     <Router history={browserHistory}>
@@ -27,6 +28,10 @@ ReactDOM.render(
             <Route name="Posts" path="/posts" component={Posts}/>
             <Route name="Post" path="/posts/:postID" component={SinglePostController}/>
             <Route name="Post" path="/posts/edit/:postID" component={EditPostController}/>
+            <Route name="Posts" path="/posts">
+                <IndexRoute component={Posts}/>
+                <Route name="PostLocator" path=":postID" component={SinglePost}/>
+            </Route>
             <Route name="Create Post" path="/create-post" component={CreatePost}/>
         </Route>
     </Router>,

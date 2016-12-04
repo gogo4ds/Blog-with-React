@@ -26,6 +26,7 @@ export default class AllPostsController extends Component {
     }
 
     render() {
+
         if(this.state.posts){
             return (
                 <div className="posts-view">
@@ -35,6 +36,5 @@ export default class AllPostsController extends Component {
             )
         }
         return <div className="alert alert-success" role="alert">Loading...</div>;
-        //TODO: insert loading box
     }
 }
