@@ -15,7 +15,8 @@ export default class SinglePostController extends Component {
         let requester = new Requester('Kinvey');
         requester.ajaxGET('appdata', 'posts', this.props.params.postID).then(function (post) {
             _self.setState({
-                post: <SinglePost key={post._id} title={post.title} body={post.body} author={post.author} date={post.date}/>
+                post: <SinglePost key={post._id} id={post._id} title={post.title} body={post.body} author={post.author} date={post.date}/>,
+                postId:post._id
             });
         });
     }

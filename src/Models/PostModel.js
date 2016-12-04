@@ -1,8 +1,8 @@
 import Requester from '../utilities/KinveyRequester'
 
-function create(data) {
+function create(post) {
     let requester=new Requester('Kinvey');
-    return requester.ajaxPOST('appdata','posts',data);
+    return requester.ajaxPOST('appdata','posts',post);
 }
 
 export {create};
