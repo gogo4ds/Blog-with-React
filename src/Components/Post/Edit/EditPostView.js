@@ -12,6 +12,7 @@ export default class EditPostView extends Component {
                             className="form-control"
                             type="text"
                             name="postTitle"
+                            required
                             value={this.props.title}
                             onChange={this.props.onchange}
                         />
@@ -20,6 +21,7 @@ export default class EditPostView extends Component {
                             type="text"
                             name="postBody"
                             rows="10"
+                            required
                             value={this.props.body}
                             onChange={this.props.onchange}
                         >

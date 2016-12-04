@@ -17,15 +17,6 @@ export default class CreatePostForm extends Component {
                         value={this.props.title}
                         onChange={this.props.onchange}
                     />
-                    <input
-                        className="form-control"
-                        type="text"
-                        name="author"
-                        required
-                        placeholder="Post author*"
-                        value={this.props.author}
-                        onChange={this.props.onchange}
-                    />
                     <textarea
                         className="form-control"
                         type="text"

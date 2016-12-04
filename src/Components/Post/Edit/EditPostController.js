@@ -56,8 +56,6 @@ export default class EditPostController extends Component {
             })
     }
 
-
-
     render() {
         return (
             <div>

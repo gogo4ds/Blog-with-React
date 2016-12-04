@@ -9,7 +9,6 @@ export default class CreatePostController extends Component{
         super(props);
         this.state={
             title:'',
-            author:'',
             description:''
         }
     }
@@ -18,7 +17,6 @@ export default class CreatePostController extends Component{
             <div>
                 <CreatePostForm
                     title={this.state.title}
-                    author={this.state.author}
                     description={this.state.description}
                     onsubmit={this.handleSubmit.bind(this)}
                     onchange={this.handleChange.bind(this)}
@@ -31,7 +29,7 @@ export default class CreatePostController extends Component{
         event.preventDefault();
         let data={
             title:this.state.title,
-            author:this.state.author,
+            author:sessionStorage.getItem('username'),
             body:this.state.description,
             date:new Date()
         };
