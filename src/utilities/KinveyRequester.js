@@ -53,7 +53,7 @@ export default class Requester {
 
     ajaxDELETE(module, uri, id){
         return $.ajax({
-            method: 'GET',
+            method: 'DELETE',
             url: `${baseUrl + module}/${appKey}/${uri}/${id}`,
             headers: this.authorization,
             error: errorHandler.handleAjaxError
