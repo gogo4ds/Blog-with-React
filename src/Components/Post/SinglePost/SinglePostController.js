@@ -3,6 +3,8 @@ import SinglePost from '../SinglePost/SinglePost'
 import SingleComment from '../../Comment/SingleComment';
 import Requester from '../../../utilities/KinveyRequester'
 import CommentForm from '../../Comment/Create/CommentForm';
+import {createComment} from '../../../Models/CommentModel';
+import Alert from 'react-s-alert';
 
 export default class SinglePostController extends Component {
     constructor(props){
@@ -18,6 +20,7 @@ export default class SinglePostController extends Component {
     componentDidMount(){
         let _self = this;
         let requester = new Requester('Kinvey');
+        sessionStorage.setItem('singlePostId',this.props.params.postID);
         requester.ajaxGET('appdata', 'posts', this.props.params.postID).then(function (post) {
             _self.setState({
                 post: <SinglePost key={post._id}
@@ -33,8 +36,9 @@ export default class SinglePostController extends Component {
         });
         requester.ajaxGET('appdata','comments')
             .then(function (comments) {
+                let currentPostId=sessionStorage.getItem('singlePostId');
                 let commentsPost=[];
-                comments=comments.filter(c=>c.postID==='5842ade501bde1035e5865d3');
+                comments=comments.filter(c=>c.postID===(currentPostId.toString()));
                 for (let comment of comments) {
                     commentsPost.push(<SingleComment
                         key={comment._id}
@@ -44,13 +48,23 @@ export default class SinglePostController extends Component {
                 _self.setState({
                    postComments:commentsPost
                 });
-                console.dir(comments);
             })
     }
 
     handleCommentSubmit(event) {
         event.preventDefault();
-        alert(this.state.commentBody);
+        let comment={
+            author:sessionStorage.getItem('username'),
+            body:this.state.commentBody,
+            date:new Date(),
+            postID:this.state.postId
+        };
+        createComment(comment)
+            .then(function (response) {
+                Alert.closeAll();
+                Alert.success('Comment created !', {timeout: 2000});
+                window.location.reload();
+            })
     }
 
     onChangeHandler(event) {
