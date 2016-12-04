@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+
 import SinglePost from '../SinglePost/SinglePost'
 import SingleComment from '../../Comment/SingleComment';
-import Requester from '../../../utilities/KinveyRequester'
 import CommentForm from '../../Comment/Create/CommentForm';
-import {createComment} from '../../../Models/CommentModel';
+
+import {loadSinglePost} from '../../../Models/PostModel';
+import {createComment,loadComments} from '../../../Models/CommentModel';
+
 import Alert from 'react-s-alert';
 
 export default class SinglePostController extends Component {
@@ -19,9 +22,9 @@ export default class SinglePostController extends Component {
 
     componentDidMount(){
         let _self = this;
-        let requester = new Requester('Kinvey');
         sessionStorage.setItem('singlePostId',this.props.params.postID);
-        requester.ajaxGET('appdata', 'posts', this.props.params.postID).then(function (post) {
+        loadSinglePost(this.props.params.postID)
+            .then(function (post) {
             _self.setState({
                 post: <SinglePost key={post._id}
                                   id={post._id}
@@ -34,7 +37,7 @@ export default class SinglePostController extends Component {
                 postId:post._id
             });
         });
-        requester.ajaxGET('appdata','comments')
+        loadComments()
             .then(function (comments) {
                 let currentPostId=sessionStorage.getItem('singlePostId');
                 let commentsPost=[];
