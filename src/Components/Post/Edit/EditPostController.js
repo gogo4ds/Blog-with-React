@@ -27,7 +27,7 @@ export default class EditPostController extends Component {
     savePostInformation(post) {
        this.setState({
            postTitle:post.title,
-           postAuhtor:post.author,
+           postAuthor:post.author,
            postBody:post.body,
            postDate:new Date()
        })

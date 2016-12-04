@@ -14,7 +14,8 @@ import Logout from './Components/Logout/LogoutController'
 import Posts from './Components/Post/AllPosts/AllPostsController'
 import CreatePost from './Components/Post/Create/CreatePostController';
 import EditPost from './Components/Post/Edit/EditPostController';
-import SinglePost from './Components/Post/SinglePost/SinglePostController'
+import SinglePost from './Components/Post/SinglePost/SinglePostController';
+import DeletePost from './Components/Post/Delete/DeletePostController';
 
 ReactDOM.render(
     <Router history={browserHistory}>
@@ -32,6 +33,7 @@ ReactDOM.render(
                 <Route name="PostLocator" path="id/:postID" component={SinglePost}/>
             </Route>
             <Route name="Create Post" path="/create-post" component={CreatePost}/>
+            <Route name="Delete Post" path="/posts/delete/id/:postID" component={DeletePost}/>
         </Route>
     </Router>,
   document.getElementById('root')

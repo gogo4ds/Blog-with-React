@@ -11,7 +11,7 @@ export default class DeletePostController extends Component {
             postID: null,
             post: null
         });
-        this.requester = new Requester('Kinvey')
+        this.requester = new Requester('Kinvey');
         this.ondelete = this.ondelete.bind(this);
     }
 

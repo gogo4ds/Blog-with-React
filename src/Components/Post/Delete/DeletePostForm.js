@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../Post/Create/CreatePost.css';
+import '../../../styles/PostFormStyle.css';
 
 export default class DeletePostForm extends Component {
     render() {
