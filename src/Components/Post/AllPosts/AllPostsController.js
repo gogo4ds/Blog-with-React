@@ -23,7 +23,7 @@ export default class AllPostsController extends Component {
                                  body={post.body}
                                  author={post.author}
                                  date={post.date}
-                                 creator={post._acl.creator}/>)
+                                 postCreator={post._acl.creator}/>)
             }
             _self.setState({
                 posts: posts

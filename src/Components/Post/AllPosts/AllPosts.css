@@ -38,3 +38,9 @@
     padding: 1%;
     display: block;
 }
+
+.edit-delete-links{
+    float: right;
+    padding-top: 15px;
+    margin-bottom: -10px;
+}

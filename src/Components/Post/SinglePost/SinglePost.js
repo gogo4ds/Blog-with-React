@@ -35,4 +35,3 @@ export default class SinglePost extends Component {
         browserHistory.push('/posts/delete/id/'+this.props.id);
     }
 }
-//TODO: make link to='single post'
