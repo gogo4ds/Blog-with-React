@@ -42,7 +42,9 @@ export default class Post extends Component {
                         </div>
                         :null
                     }
-                    <span className="comments-counter glyphicon glyphicon-comment"> Comments: {this.state.comments}</span>
+                    <span className="comments-counter glyphicon glyphicon-comment">{' '}
+                        <Link to={'/posts/id/' + this.props.id}>Comments:</Link> {this.state.comments}
+                    </span>
                 </div>
             );
     }
