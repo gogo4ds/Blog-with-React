@@ -39,15 +39,25 @@ export default class DeletePostController extends Component {
 
     ondelete(ev){
         ev.preventDefault();
-        this.requester.ajaxDELETE('appdata', 'posts', this.state.postID).then(function (success) {
-            console.log(success);
-            browserHistory.push('/posts');
-            Alert.success('Post Deleted', {
-                timeout: 1500,
-                effect: 'bouncyflip',
-                position: 'bottom',
-                offset: 50
+        this.requester.ajaxGET('appdata',`comments/?query={"postID":"${this.state.postID}"}`)
+            .then(function (comments) {
+                if (comments.length>0) {
+                    let requester=new Requester('Kinvey');
+                    for (let comment of comments) {
+                        requester.ajaxDELETE('appdata','comments',comment._id)
+                    }
+                }
             })
-        });
+            .then(
+                this.requester.ajaxDELETE('appdata', 'posts', this.state.postID).then(function (success) {
+                    browserHistory.push('/posts');
+                    Alert.success('Post Deleted', {
+                        timeout: 1500,
+                        effect: 'bouncyflip',
+                        position: 'bottom',
+                        offset: 50
+                    })
+                })
+            )
     }
 }
