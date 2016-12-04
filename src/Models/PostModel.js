@@ -5,7 +5,21 @@ function create(post) {
     return requester.ajaxPOST('appdata','posts',post);
 }
 
-export {create};
+function loadSinglePost(postId) {
+    let requester=new Requester('Kinvey');
+    return requester.ajaxGET('appdata','posts',postId);
+}
+
+function editPost(postId,data) {
+    let requester=new Requester('Kinvey');
+    return requester.ajaxPUT('appdata','posts',postId,data);
+}
+
+export {
+        create,
+        loadSinglePost,
+        editPost
+};
 
 
 

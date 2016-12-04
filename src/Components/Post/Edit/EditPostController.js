@@ -1,27 +1,72 @@
 import React, { Component } from 'react';
-import Requester from '../../../utilities/KinveyRequester'
+import EditPostView from './EditPostView';
+import {loadSinglePost,editPost} from '../../../Models/PostModel';
+import {browserHistory} from 'react-router';
+import Alert from 'react-s-alert';
 
 export default class EditPostController extends Component {
     constructor(props) {
         super(props);
         this.state=({
-            postId:this.props.params.postID
-        })
+            postTitle:'',
+            postAuthor:'',
+            postBody:'',
+            postDate:''
+        });
+
+        this.savePostInformation=this.savePostInformation.bind(this);
+        this.onChangeHandler=this.onChangeHandler.bind(this);
+        this.onSubmitHandler=this.onSubmitHandler.bind(this);
     }
 
     componentDidMount() {
-        let requester=new Requester('Kinvey');
-        requester.ajaxGET('appdata','posts',this.state.postId)
-            .then(function (post) {
-                console.dir(post);
+        loadSinglePost(this.props.params.postID)
+            .then(this.savePostInformation)
+    }
+
+    savePostInformation(post) {
+       this.setState({
+           postTitle:post.title,
+           postAuhtor:post.author,
+           postBody:post.body,
+           postDate:new Date()
+       })
+    }
+
+    onChangeHandler(event) {
+        event.preventDefault();
+        let newState={};
+        newState[event.target.name]=event.target.value;
+        this.setState(newState);
+    }
+
+    onSubmitHandler(event) {
+        event.preventDefault();
+        let editedPost={
+            title:this.state.postTitle,
+            author:this.state.postAuthor,
+            body:this.state.postBody,
+            date:this.state.postDate
+        };
+        editPost(this.props.params.postID,editedPost)
+            .then(function (response) {
+                Alert.closeAll();
+                Alert.success('Post Edited !', {timeout: 2000});
+                browserHistory.push('/posts');
             })
     }
+
 
 
     render() {
         return (
             <div>
-                Test controller
+                <EditPostView
+                    title={this.state.postTitle}
+                    body={this.state.postBody}
+                    onchange={this.onChangeHandler}
+                    onsubmit={this.onSubmitHandler}
+                />
             </div>
         )
     }

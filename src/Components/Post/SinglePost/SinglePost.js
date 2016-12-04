@@ -22,7 +22,7 @@ export default class SinglePost extends Component {
 
     handleClick(event) {
         event.preventDefault();
-        browserHistory.push('/posts/edit/'+this.props.id);
+        browserHistory.push('/posts/edit/id/'+this.props.id);
     }
 }
 //TODO: make link to='single post'
