@@ -15,7 +15,7 @@ export default class SinglePostController extends Component {
         this.state ={
             post: null,
             postId:null,
-            postComments:null,
+            postComments:[],
             commentBody:null
         }
     }
@@ -94,7 +94,7 @@ export default class SinglePostController extends Component {
                         </div>
                     </div>
                         <div>
-                            <h1>{this.state.postComments.length} Comments:</h1>
+                            <h1>{this.state.postComments.length || undefined} Comments:</h1>
                             <hr/>
                             {this.state.postComments}
                         </div>
