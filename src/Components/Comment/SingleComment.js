@@ -4,7 +4,7 @@ export default class SingleComment extends Component {
     render() {
             return (
             <div className="container">
-                <span className="comment-author"><i>{this.props.author} on </i> <span><i>{this.props.date}</i></span></span>
+                <span className="glyphicon glyphicon-user comment-info"><i>{this.props.author} on </i><span className="glyphicon glyphicon-time"><i>{this.props.date}</i></span></span>
                 <br/>
                 <div className="comment-box">
                     <div className="body">

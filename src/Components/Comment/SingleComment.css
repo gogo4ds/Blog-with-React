@@ -4,6 +4,7 @@
     position: absolute;
     background: transparent;
     border: 10px solid black;
+    margin-top:2px;
 }
 
 .tip-up {
@@ -16,13 +17,14 @@
 
 .comment-box .body {
     position: relative;
-    max-width: 300px;
+    max-width: 500px;
     height: auto;
     margin: 20px 10px;
-    padding: 5px;
+    padding: 15px;
     background-color: white;
-    border-radius: 3px;
-    border: 5px solid black;
+    border-radius: 5px;
+    border: 1px solid black;
+    text-align:justify;
 }
 
 .body .comment-body {
@@ -34,6 +36,8 @@
     color: black;
 }
 
-.comment-author {
+.comment-info {
     float: left;
+    font-size: 13pt;
+    margin-top:10px;
 }
