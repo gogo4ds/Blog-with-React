@@ -15,6 +15,7 @@
 .post-date {
     color: #135d69;
     float: left;
+    height: auto;
 }
 
 .post {
@@ -46,7 +47,10 @@
 }
 
 .comments-counter {
-    float:left;
-    padding-left: 10px;
+    display: block;
+    float: left;
+    clear: both;
+    padding: 10px;
     color: #3a7447;
+    margin-left: -10px;
 }

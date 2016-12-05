@@ -34,6 +34,9 @@ export default class Post extends Component {
                     <div className="post-data">
                         <span className="glyphicon glyphicon-user post-author"> Author: <strong>{this.props.author}</strong></span><br/>
                         <span className="glyphicon glyphicon-time post-date"> Published on: <strong>{this.props.date.substring(0, 10)}</strong></span>
+                        <span className="comments-counter glyphicon glyphicon-comment">{' '}
+                            <Link to={'/posts/id/' + this.props.id}>Comments:</Link> {this.state.comments}
+                    </span>
                     </div>
                     {this.props.postCreator===sessionStorage.getItem('userID') ?
                         <div className="edit-delete-links">
@@ -43,9 +46,6 @@ export default class Post extends Component {
                         :null
                     }
                     <br/>
-                    <span className="comments-counter glyphicon glyphicon-comment">{' '}
-                        <Link to={'/posts/id/' + this.props.id}>Comments:</Link> {this.state.comments}
-                    </span>
                 </div>
             );
     }
