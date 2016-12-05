@@ -20,7 +20,11 @@ export default class AllPostsController extends Component {
                 posts.push(<Post key={post._id}
                                  id={post._id}
                                  title={post.title}
-                                 body={post.body}
+                                 body={post.body.length>100 ?
+                                    post.body.substring(0,100)+"..."
+                                     :
+                                     post.body
+                                 }
                                  author={post.author}
                                  date={post.date}
                                  postCreator={post._acl.creator}
