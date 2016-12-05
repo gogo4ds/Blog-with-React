@@ -19,12 +19,20 @@
 }
 
 .single-post {
-    width: 400px;
+    width: 900px;
     height: auto;
-    margin: 60px 60px 90px 90px;
-    border: solid #42464b 2px;
+    margin: auto;
+    margin-top: 20px;
     padding: 20px 20px;
-    float: left;
+    background: white;
+}
+
+.post-buttons {
+    float: right;
+}
+
+.post-buttons > span {
+
 }
 
 .post link {

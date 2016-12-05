@@ -35,10 +35,17 @@ export default class AllPostsController extends Component {
     render() {
         if(this.state.posts){
             return (
-                <div className="posts-view">
-                    <h1>All Posts</h1>
-                    {this.state.posts}
-                </div>
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="col-sm-12">
+                                <div className="posts-view col-sm-8">
+                                    <h1>All Posts</h1>
+                                    {this.state.posts}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
             )
         }
         return <div className="alert alert-success" role="alert">Loading...</div>;

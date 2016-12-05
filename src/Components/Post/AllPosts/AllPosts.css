@@ -18,7 +18,7 @@
 }
 
 .post {
-    width: 300px;
+    width: 800px;
     height: auto;
     margin: 20px 20px 20px 20px;
     border: solid #42464b 2px;
@@ -46,7 +46,7 @@
 }
 
 .comments-counter {
-    float: left;
-    padding-top: 15px;
+    float:left;
+    padding-left: 10px;
     color: #3a7447;
 }

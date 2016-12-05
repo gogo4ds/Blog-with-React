@@ -26,22 +26,26 @@ export default class SinglePost extends Component {
     render() {
         return (
                 <div className="single-post">
-                    <div className="post-title">
-                        <h3>{this.props.title}</h3>
+                    <div className="page-header">
+                        <h1 className="post-title">{this.props.title}</h1>
+                        <br/>
+                        <p>Posted by  <span className="glyphicon glyphicon-user"/> <a href="#">{this.props.author}</a> on <span className="glyphicon glyphicon-time">{this.props.date.substring(0, 10)}</span>
+                            <span className="post-buttons">{this.props.postCreator===sessionStorage.getItem('userID') ?
+                            <span>
+                                <button className="btn btn-primary" onClick={this.handleClick.bind(this)}>Edit</button> <button className="btn btn-primary" onClick={this.handleDelete.bind(this)}>Delete</button>
+                            </span>
+                            :null
+                        }</span>
+                        </p>
                     </div>
-                    <div className="post-body">{this.props.body}</div>
-                    <div className="post-data">
-                        <span className="glyphicon glyphicon-user post-author"> Author: <strong>{this.props.author}</strong></span><br/>
-                        <span className="glyphicon glyphicon-time post-date"> Published on: <strong>{this.props.date.substring(0, 10)}</strong></span>
-                    </div>
-                    {this.props.postCreator===sessionStorage.getItem('userID') ?
-                        <div>
-                            <button className="btn btn-primary" onClick={this.handleClick.bind(this)}>Edit</button>
-                            <button className="btn btn-primary" onClick={this.handleDelete.bind(this)}>Delete</button>
+                    <div className="row">
+                        <div className="col-sm-12">
+                            <p>
+                                {this.props.body}
+                            </p>
+                            <hr/>
                         </div>
-                        :null
-                    }
-                    <span className="comments-counter glyphicon glyphicon-comment"> Comments: {this.state.comments}</span>
+                    </div>
                 </div>
         );
     }

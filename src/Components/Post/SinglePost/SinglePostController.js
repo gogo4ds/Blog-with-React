@@ -46,6 +46,8 @@ export default class SinglePostController extends Component {
                     commentsPost.push(<SingleComment
                         key={comment._id}
                         body={comment.body}
+                        author={comment.author}
+                        date={comment.date.substring(0,10)}
                     />)
                 }
                 _self.setState({
@@ -81,21 +83,25 @@ export default class SinglePostController extends Component {
     render() {
         if(this.state.post){
             return (
-                <div>
-                    <div className="posts-view">
-                        <h1>Single Post</h1>
-                        {this.state.post}
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-sm-12">
+                            {this.state.post}
+                        </div>
                     </div>
                         <div>
-                            <CommentForm
-                                onChangeHandler={this.onChangeHandler.bind(this)}
-                                onSubmitHandle={this.handleCommentSubmit.bind(this)}
-                            />
-                        </div>
-                        <div>
+                            <h1>{this.state.postComments.length} Comments:</h1>
                             <hr/>
                             {this.state.postComments}
                         </div>
+                    <hr/>
+                    <div>
+                        <h1>Leave a comment: </h1>
+                        <CommentForm
+                            onChangeHandler={this.onChangeHandler.bind(this)}
+                            onSubmitHandle={this.handleCommentSubmit.bind(this)}
+                        />
+                    </div>
                 </div>
             )
         }
