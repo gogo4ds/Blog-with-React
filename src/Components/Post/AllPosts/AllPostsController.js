@@ -4,42 +4,83 @@ import './AllPosts.css'
 import Requester from '../../../utilities/KinveyRequester'
 import SideBar from '../../Common/SideBar';
 import '../../Common/SideBar.css';
+import Pager from 'rc-pager';
+import 'rc-pager/assets/bootstrap.css';
 
 export default class AllPostsController extends Component {
     constructor(props){
         super(props);
         this.state ={
             posts: null
+        };
+        this.state = {
+            posts: [],
+            current: 0,
+        };
+        this.requester = new Requester('Kinvey');
+        this.prevPages=[0];
+        this.pagesCount = 0;
+    }
+
+    handleSkip(page) {
+        this.setState({
+            current: page,
+        });
+        if(!this.prevPages.includes(page)){
+            this.prevPages.push(page);
+            let _self = this;
+            let posts = [];
+            this.requester.ajaxGET('appdata', 'posts/?query={}&sort={"date":-1}&limit=4&skip=' + (page * 4)).then(function (success) {
+                for(let post of success){
+                    posts.push(<Post key={post._id}
+                                     id={post._id}
+                                     title={post.title}
+                                     body={post.body.length>100 ?
+                                     post.body.substring(0,100)+"..."
+                                         :
+                                         post.body
+                                     }
+                                     author={post.author}
+                                     date={post.date}
+                                     postCreator={post._acl.creator}
+                    />);
+                }
+                let newPostArray = _self.state.posts.slice();
+                newPostArray.push(posts);
+                _self.setState({ posts: newPostArray })
+            });
         }
     }
 
     componentDidMount(){
-        let requester = new Requester('Kinvey');
         let _self = this;
         let posts = [];
-        requester.ajaxGET('appdata', 'posts').then(function (success) {
-            for(let post of success){
-                posts.push(<Post key={post._id}
-                                 id={post._id}
-                                 title={post.title}
-                                 body={post.body.length>100 ?
-                                    post.body.substring(0,100)+"..."
-                                     :
-                                     post.body
-                                 }
-                                 author={post.author}
-                                 date={post.date}
-                                 postCreator={post._acl.creator}
-                />);
-            }
-            _self.setState({
-                posts: posts
+        this.requester.ajaxGET('appdata', 'posts').then(function (success){
+            _self.pagesCount = Math.ceil(success.length/4);
+            _self.requester.ajaxGET('appdata', 'posts/?query={}&sort={"date":-1}&limit=4&skip=0').then(function (success) {
+                for(let post of success){
+                    posts.push(<Post key={post._id}
+                                     id={post._id}
+                                     title={post.title}
+                                     body={post.body.length>100 ?
+                                     post.body.substring(0,100)+"..."
+                                         :
+                                         post.body
+                                     }
+                                     author={post.author}
+                                     date={post.date}
+                                     postCreator={post._acl.creator}
+                    />);
+                }
+                let postsArray = _self.state.posts.slice();
+                postsArray.push(posts);
+                _self.setState({ posts: postsArray })
             });
         });
     }
 
     render() {
-        if(this.state.posts){
+        if(this.state.posts.length !== 0){
             return (
                     <div className="container-fluid">
                         <div className="row">
@@ -47,12 +88,14 @@ export default class AllPostsController extends Component {
                                 <SideBar/>
                                 <div className="posts-view col-sm-8">
                                     <h1>All Posts</h1>
-                                    {this.state.posts}
+                                    {this.state.posts[this.state.current]}
                                 </div>
                             </div>
                         </div>
+                        <Pager total={this.pagesCount}
+                               current={this.state.current}
+                               onSkipTo={this.handleSkip.bind(this)}/>
                     </div>
-
             )
         }
         return <div className="alert alert-success" role="alert">Loading...</div>;
