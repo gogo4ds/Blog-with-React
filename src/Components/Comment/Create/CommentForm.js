@@ -4,7 +4,7 @@ import '../../../styles/CommentFormStyle.css';
 export default class CommentForm extends Component {
     render() {
         return (
-            <div className="form-style-3">
+            <div className="comment-form">
                 <form onSubmit={this.props.onSubmitHandle}>
                     <fieldset>
                         <label name="field6"><span>Comment text: </span>

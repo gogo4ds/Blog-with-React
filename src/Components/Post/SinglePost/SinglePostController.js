@@ -81,6 +81,10 @@ export default class SinglePostController extends Component {
 
 
     render() {
+        let style={
+            float:'left',
+            margin:'10px 20px 50px 50px'
+        };
         if(this.state.post){
             return (
                 <div className="container-fluid">
@@ -95,7 +99,7 @@ export default class SinglePostController extends Component {
                             {this.state.postComments}
                         </div>
                     <hr/>
-                    <div>
+                    <div style={style}>
                         <h1>Leave a comment: </h1>
                         <CommentForm
                             onChangeHandler={this.onChangeHandler.bind(this)}
