@@ -3,6 +3,7 @@ import {browserHistory} from 'react-router';
 import Requester from '../../../utilities/KinveyRequester'
 import './SinglePost.css'
 import '../AllPosts/AllPosts.css'
+import '../../Comment/SingleComment.css';
 
 export default class SinglePost extends Component {
     constructor(props){

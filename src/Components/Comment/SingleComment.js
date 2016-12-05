@@ -3,15 +3,18 @@ import React, { Component } from 'react';
 export default class SingleComment extends Component {
     render() {
             return (
-                <div className="well">
-                    <div className="media">
-                        <div className="media-body">
-                            <h4 className="margin-t-0"><h1>{this.props.author}</h1></h4>
-                            <p>{this.props.date}</p>
-                            <p>{this.props.body}</p>
+            <div className="container">
+                <span className="comment-author"><i>{this.props.author} on </i> <span><i>{this.props.date}</i></span></span>
+                <br/>
+                <div className="comment-box">
+                    <div className="body">
+                        <span className="tip tip-up"></span>
+                        <div className="comment-body">
+                            <span>{this.props.body}</span>
                         </div>
                     </div>
                 </div>
+            </div>
         );
     }
 }
