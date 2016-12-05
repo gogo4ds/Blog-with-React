@@ -25,6 +25,8 @@
     margin-top: 20px;
     padding: 20px 20px;
     background: white;
+    border:5px solid black;
+    border-radius:17px;
 }
 
 .post-buttons {
