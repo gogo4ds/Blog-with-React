@@ -15,8 +15,6 @@ export default class AllPostsController extends Component {
         this.requester = new Requester('Kinvey');
         this.prevPages=[0];
         this.pagesCount = 0;
-        let _self = this;
-
     }
 
     handleSkip(page) {
