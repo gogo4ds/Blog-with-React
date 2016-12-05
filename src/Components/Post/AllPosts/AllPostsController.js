@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import Post from './Post'
 import './AllPosts.css'
 import Requester from '../../../utilities/KinveyRequester'
+import SideBar from '../../Common/SideBar';
+import '../../Common/SideBar.css';
 
 export default class AllPostsController extends Component {
     constructor(props){
         super(props);
         this.state ={
-            posts: null,
+            posts: null
         }
     }
 
@@ -42,6 +44,7 @@ export default class AllPostsController extends Component {
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-sm-12">
+                                <SideBar/>
                                 <div className="posts-view col-sm-8">
                                     <h1>All Posts</h1>
                                     {this.state.posts}
