@@ -10,11 +10,8 @@ import 'rc-pager/assets/bootstrap.css';
 export default class AllPostsController extends Component {
     constructor(props){
         super(props);
-        this.state ={
-            posts: null
-        };
         this.state = {
-            posts: [],
+            posts: new Map(),
             current: 0,
         };
         this.requester = new Requester('Kinvey');
@@ -30,7 +27,7 @@ export default class AllPostsController extends Component {
             this.prevPages.push(page);
             let _self = this;
             let posts = [];
-            this.requester.ajaxGET('appdata', 'posts/?query={}&sort={"date":-1}&limit=4&skip=' + (page * 4)).then(function (success) {
+            this.requester.ajaxGET('appdata', `posts/?query={}&sort={"date":-1}&limit=4&skip=${page * 4}`).then(function (success) {
                 for(let post of success){
                     posts.push(<Post key={post._id}
                                      id={post._id}
@@ -45,9 +42,9 @@ export default class AllPostsController extends Component {
                                      postCreator={post._acl.creator}
                     />);
                 }
-                let newPostArray = _self.state.posts.slice();
-                newPostArray.push(posts);
-                _self.setState({ posts: newPostArray })
+                let postsMap = new Map(_self.state.posts);
+                postsMap.set(`page${page}` , posts);
+                _self.setState({ posts: postsMap })
             });
         }
     }
@@ -72,15 +69,15 @@ export default class AllPostsController extends Component {
                                      postCreator={post._acl.creator}
                     />);
                 }
-                let postsArray = _self.state.posts.slice();
-                postsArray.push(posts);
-                _self.setState({ posts: postsArray })
+                let postsMap = new Map(_self.state.posts);
+                postsMap.set('page0', posts);
+                _self.setState({ posts: postsMap })
             });
         });
     }
 
     render() {
-        if(this.state.posts.length !== 0){
+        if(this.state.posts.size !== 0){
             return (
                     <div className="container-fluid">
                         <div className="row">
@@ -88,7 +85,7 @@ export default class AllPostsController extends Component {
                                 <SideBar/>
                                 <div className="posts-view col-sm-8">
                                     <h1>All Posts</h1>
-                                    {this.state.posts[this.state.current]}
+                                    {this.state.posts.get(`page${this.state.current}`)}
                                 </div>
                             </div>
                         </div>
