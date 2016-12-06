@@ -26,14 +26,13 @@ ReactDOM.render(
             <Route name="Register" path="/register" component={Register}/>
             <Route name="Logout" path="/logout" component={Logout}/>
             <Route name="Posts" path="/posts" component={Posts}/>
-            <Route name="Post" path="/posts/:postID" component={SinglePost}/>
-            <Route name="Post" path="/posts/edit/id/:postID" component={EditPost}/>
             <Route name="Posts" path="/posts">
                 <IndexRoute component={Posts}/>
-                <Route name="PostLocator" path="id/:postID" component={SinglePost}/>
+                <Route name="PostLocator" path=":postID" component={SinglePost}/>
+                <Route name="Edit" path=":postID/edit" component={EditPost}/>
+                <Route name="Delete Post" path=":postID/delete" component={DeletePost}/>
             </Route>
             <Route name="Create Post" path="/create-post" component={CreatePost}/>
-            <Route name="Delete Post" path="/posts/delete/id/:postID" component={DeletePost}/>
         </Route>
     </Router>,
   document.getElementById('root')

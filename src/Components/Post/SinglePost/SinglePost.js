@@ -53,11 +53,11 @@ export default class SinglePost extends Component {
 
     handleClick(event) {
         event.preventDefault();
-        browserHistory.push('/posts/edit/id/'+this.props.id);
+        browserHistory.push('/posts/'+this.props.id +'/edit');
     }
 
     handleDelete(event) {
         event.preventDefault();
-        browserHistory.push('/posts/delete/id/'+this.props.id);
+        browserHistory.push('/posts/'+this.props.id + '/delete');
     }
 }
