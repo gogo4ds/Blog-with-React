@@ -6,6 +6,7 @@ import SideBar from '../../Common/SideBar';
 import '../../Common/SideBar.css';
 import Pager from 'rc-pager';
 import 'rc-pager/assets/bootstrap.css';
+import {Link} from 'react-router';
 
 export default class AllPostsController extends Component {
     constructor(props){
@@ -13,7 +14,7 @@ export default class AllPostsController extends Component {
         this.state = {
             posts: new Map(),
             current: 0,
-            mostCommentedPosts:{}
+            mostCommentedPosts: []
         };
         this.requester = new Requester('Kinvey');
         this.prevPages=[0];
@@ -63,9 +64,16 @@ export default class AllPostsController extends Component {
                 _self.requester.ajaxGET('appdata', `comments/?query={"postID":"${post._id}"}`)
                     .then(function (comments) {
                         mostCommentedPosts[post.title]=comments.length;
-                        _self.setState({
-                            mostCommentedPosts:mostCommentedPosts
-                        })
+                        let keys=Object.keys(mostCommentedPosts).sort(function (postA,postB) {
+                            return mostCommentedPosts[postB]-mostCommentedPosts[postA];
+                        });
+                        let allPostsComments=[];
+                        for (let i=0;i<5;i++) {
+                            allPostsComments.push(<div key={i}><Link>{keys[i]}</Link></div>);
+                            _self.setState({
+                                mostCommentedPosts:allPostsComments
+                            });
+                        }
                     });
             }
             _self.pagesCount = Math.ceil(success.length/4);
@@ -98,7 +106,7 @@ export default class AllPostsController extends Component {
                         <div className="row">
                             <div className="col-sm-12">
                                 <SideBar
-                                    postsTitles={Object.keys(this.state.mostCommentedPosts)}
+                                    postsTitles={this.state.mostCommentedPosts}
                                 />
                                 <div className="posts-view col-sm-8">
                                     <h1>All Posts</h1>
