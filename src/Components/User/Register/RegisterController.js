@@ -52,6 +52,7 @@ export default class RegisterController extends Component {
             .then(function (response) {
                     Session.save(response);
                     observer.sessionChange();
+                    observer['password']=this.state.password;
                     Alert.closeAll();
                     Alert.success('Successfully logged in', {timeout: 2000});
                     browserHistory.push('/home');
