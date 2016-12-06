@@ -25,12 +25,12 @@ ReactDOM.render(
             <Route name="Login" path="/login" component={Login}/>
             <Route name="Register" path="/register" component={Register}/>
             <Route name="Logout" path="/logout" component={Logout}/>
-            <Route name="Posts" path="/posts" component={Posts}/>
             <Route name="Posts" path="/posts">
                 <IndexRoute component={Posts}/>
-                <Route name="PostLocator" path=":postID" component={SinglePost}/>
-                <Route name="Edit" path=":postID/edit" component={EditPost}/>
-                <Route name="Delete Post" path=":postID/delete" component={DeletePost}/>
+                <Route name="PostLocator" path=":postID" component={SinglePost}>
+                    <Route name="Edit Post" path="edit" component={EditPost}/>
+                    <Route name="Delete Post" path="delete" component={DeletePost}/>
+                </Route>
             </Route>
             <Route name="Create Post" path="/create-post" component={CreatePost}/>
         </Route>
