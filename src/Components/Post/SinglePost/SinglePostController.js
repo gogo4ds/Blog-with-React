@@ -9,6 +9,8 @@ import {createComment,loadComments} from '../../../Models/CommentModel';
 
 import Alert from 'react-s-alert';
 
+import $ from 'jquery';
+
 export default class SinglePostController extends Component {
     constructor(props){
         super(props);
@@ -23,8 +25,37 @@ export default class SinglePostController extends Component {
     componentDidMount(){
         let _self = this;
         sessionStorage.setItem('singlePostId',this.props.params.postID);
+        let imageDiv=$('<div>');
         loadSinglePost(this.props.params.postID)
             .then(function (post) {
+                let userCredentials=btoa('koko:123');
+                let requestURL='https://baas.kinvey.com/blob/kid_r15MCj0Mx';
+                let requestHeaders={
+                    'Authorization':'Basic '+userCredentials,
+                    'Content-Type':'application/json'
+                };
+                $.ajax({
+                    method:'GET',
+                    url:requestURL,
+                    headers:requestHeaders
+                })
+                    .then (function (success) {
+                        for (let image of success) {
+                            if (sessionStorage.getItem('singlePostId')===image.postId) {
+                                let url=image._downloadURL;
+                                let link=document.createElement('a');
+                                link.download=url.substr(url.lastIndexOf('/'));
+                                link.href=url;
+                                imageDiv
+                                    .append(link);
+                                link.click();
+                            }
+                        }
+                })
+                    .catch(function (err) {
+                        console.log(err);
+                    })
+                ;
             _self.setState({
                 post: <SinglePost key={post._id}
                                   id={post._id}
@@ -33,6 +64,7 @@ export default class SinglePostController extends Component {
                                   author={post.author}
                                   date={post.date}
                                   postCreator={post._acl.creator}
+                                  image={imageDiv}
                 />,
                 postId:post._id
             });
