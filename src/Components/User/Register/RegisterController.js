@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import RegisterForm from './RegisterForm'
-import ImageUploader from '../Image/ImageUploader'
-import UserModel from '../../Models/UserModel';
-import Session from '../../utilities/sessionStorageManager';
-import observer from '../../utilities/observer';
+import ImageUploader from '../../Image/ImageUploader'
+import UserModel from '../../../Models/UserModel';
+import Session from '../../../utilities/sessionStorageManager';
+import observer from '../../../utilities/observer';
 import {browserHistory} from 'react-router';
 import Alert from 'react-s-alert'
 

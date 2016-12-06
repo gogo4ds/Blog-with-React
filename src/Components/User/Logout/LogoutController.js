@@ -1,8 +1,8 @@
 import {Component} from 'react'
-import Session from '../../utilities/sessionStorageManager'
+import Session from '../../../utilities/sessionStorageManager'
 import {browserHistory} from 'react-router'
-import UserModel from '../../Models/UserModel'
-import observer from '../../utilities/observer'
+import UserModel from '../../../Models/UserModel'
+import observer from '../../../utilities/observer'
 import Alert from 'react-s-alert'
 
 export default class LogoutController extends Component{

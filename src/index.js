@@ -8,9 +8,9 @@ import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 import 'react-s-alert/dist/s-alert-css-effects/bouncyflip.css';
 import Home from './Components/Home/HomeView'
-import Login from './Components/Login/LoginController'
-import Register from './Components/Register/RegisterController'
-import Logout from './Components/Logout/LogoutController'
+import Login from './Components/User/Login/LoginController'
+import Register from './Components/User/Register/RegisterController'
+import Logout from './Components/User/Logout/LogoutController'
 import Posts from './Components/Post/AllPosts/AllPostsController'
 import CreatePost from './Components/Post/Create/CreatePostController';
 import EditPost from './Components/Post/Edit/EditPostController';

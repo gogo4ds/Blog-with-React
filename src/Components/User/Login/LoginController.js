@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import LoginForm from './LoginForm'
-import UserModel from '../../Models/UserModel'
-import Session from '../../utilities/sessionStorageManager'
+import UserModel from '../../../Models/UserModel'
+import Session from '../../../utilities/sessionStorageManager'
 import {browserHistory} from 'react-router'
-import observer from '../../utilities/observer'
+import observer from '../../../utilities/observer'
 import Alert from 'react-s-alert'
 
 export default class LoginController extends Component {
