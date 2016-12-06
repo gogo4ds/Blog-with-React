@@ -83,7 +83,7 @@ export default class AllPostsController extends Component {
                                      id={post._id}
                                      title={post.title}
                                      body={post.body.length>100 ?
-                                     post.body.substring(0,100)+"..."
+                                     post.body.substring(0,200)+"..."
                                          :
                                          post.body
                                      }
