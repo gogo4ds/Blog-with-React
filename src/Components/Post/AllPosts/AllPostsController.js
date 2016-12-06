@@ -17,19 +17,23 @@ export default class AllPostsController extends Component {
         this.requester = new Requester('Kinvey');
         this.prevPages=[0];
         this.pagesCount = 0;
+        this.postsPage = [];
     }
 
     handleSkip(page) {
         this.setState({
             current: page,
         });
+        if(this.prevPages.includes(page)){
+            this.postsPage = [1];
+        }
         if(!this.prevPages.includes(page)){
+            this.postsPage = [];
             this.prevPages.push(page);
             let _self = this;
-            let posts = [];
             this.requester.ajaxGET('appdata', `posts/?query={}&sort={"date":-1}&limit=4&skip=${page * 4}`).then(function (success) {
                 for(let post of success){
-                    posts.push(<Post key={post._id}
+                    _self.postsPage.push(<Post key={post._id}
                                      id={post._id}
                                      title={post.title}
                                      body={post.body.length>100 ?
@@ -43,7 +47,7 @@ export default class AllPostsController extends Component {
                     />);
                 }
                 let postsMap = new Map(_self.state.posts);
-                postsMap.set(`page${page}` , posts);
+                postsMap.set(`page${page}` , _self.postsPage);
                 _self.setState({ posts: postsMap })
             });
         }
@@ -51,12 +55,12 @@ export default class AllPostsController extends Component {
 
     componentDidMount(){
         let _self = this;
-        let posts = [];
+        this.postsPage = [];
         this.requester.ajaxGET('appdata', 'posts').then(function (success){
             _self.pagesCount = Math.ceil(success.length/4);
             _self.requester.ajaxGET('appdata', 'posts/?query={}&sort={"date":-1}&limit=4&skip=0').then(function (success) {
                 for(let post of success){
-                    posts.push(<Post key={post._id}
+                    _self.postsPage.push(<Post key={post._id}
                                      id={post._id}
                                      title={post.title}
                                      body={post.body.length>100 ?
@@ -70,14 +74,14 @@ export default class AllPostsController extends Component {
                     />);
                 }
                 let postsMap = new Map(_self.state.posts);
-                postsMap.set('page0', posts);
+                postsMap.set('page0', _self.postsPage);
                 _self.setState({ posts: postsMap })
             });
         });
     }
 
     render() {
-        if(this.state.posts.size !== 0){
+        if(this.state.posts.size !== 0 && this.postsPage.length !== 0){
             return (
                     <div className="container-fluid">
                         <div className="row">
