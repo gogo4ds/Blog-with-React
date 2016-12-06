@@ -10,6 +10,7 @@ export default class RegisterForm extends Component {
                     placeholder="Username"
                     name="username"
                     value={this.props.username}
+                    disabled={this.props.submitDisabled}
                     onChange={this.props.onChangeHandler}
                     required
                 />
@@ -18,6 +19,7 @@ export default class RegisterForm extends Component {
                     placeholder="password"
                     name="password"
                     value={this.props.password}
+                    disabled={this.props.submitDisabled}
                     onChange={this.props.onChangeHandler}
                     required
                 />
@@ -26,10 +28,11 @@ export default class RegisterForm extends Component {
                     placeholder="repeat password"
                     name="repeatPass"
                     value={this.props.repeatPassword}
+                    disabled={this.props.submitDisabled}
                     onChange={this.props.onChangeHandler}
                     required
                 />
-                <input type="submit" value="Register"/>
+                <input type="submit" value="Register" disabled={this.props.submitDisabled}/>
             </form>
         );
     }

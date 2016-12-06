@@ -13,7 +13,8 @@ export default class RegisterController extends Component {
         this.state={
             username:'',
             password:'',
-            repeatPass:''
+            repeatPass:'',
+            submitDisabled:false
         };
 
         this.submitHandle=this.submitHandle.bind(this);
@@ -30,6 +31,7 @@ export default class RegisterController extends Component {
             repeatPassword={this.state.repeatPass}
             onsubmit={this.submitHandle}
             onChangeHandler={this.changeHandle}
+            submitDisabled={this.state.submitDisabled}
             />
             <div className="image-uploader">
                 <ImageUploader/>
@@ -40,14 +42,21 @@ export default class RegisterController extends Component {
 
     submitHandle(event) {
         event.preventDefault();
+        if (this.state.password!==this.state.repeatPass) {
+            Alert.error("Passwords don't match !",{timeout:5000});
+            return;
+        }
+        this.setState({
+            submitDisabled:true
+        });
         let data={username:this.state.username,password:this.state.password};
         UserModel.registerUser(data)
             .then(function (response) {
-                Session.save(response);
-                observer.sessionChange();
-                Alert.closeAll();
-                Alert.success('Successfully logged in', {timeout: 2000});
-                browserHistory.push('/home')
+                    Session.save(response);
+                    observer.sessionChange();
+                    Alert.closeAll();
+                    Alert.success('Successfully logged in', {timeout: 2000});
+                    browserHistory.push('/home');
             });
     }
 

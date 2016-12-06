@@ -42,12 +42,11 @@
 }
 .form-style-5 input[type="text"]:focus,
 .form-style-5 textarea:focus,
-.form-style-5 input[type="file"] {
+.form-style-5 input[type="file"]:focus {
     background: white;
 }
 
-.form-style-5 input[type="submit"],
-.form-style-5 input[type="file"] {
+.form-style-5 input[type="submit"] {
     position: relative;
     display: block;
     padding: 19px 39px 18px 39px;
@@ -64,4 +63,19 @@
 }
 .form-style-5 input[type="submit"]:hover {
     background: #109177;
+}
+
+.form-style-5 input[type="file"] {
+    position: relative;
+    display: block;
+    border-radius: 4px;
+    padding: 19px 39px 18px 39px;
+    color: #42464b;
+    margin: 0 auto;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    width: 100%;
+    border: 1px solid #16a085;
+    margin-bottom: 10px;
 }

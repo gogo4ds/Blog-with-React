@@ -16,6 +16,7 @@ export default class CreatePostForm extends Component {
                         placeholder="Post title*"
                         value={this.props.title}
                         onChange={this.props.onchange}
+                        disabled={this.props.submitDisabled}
                     />
                     <textarea
                         className="form-control"
@@ -26,6 +27,7 @@ export default class CreatePostForm extends Component {
                         rows="10"
                         value={this.props.description}
                         onChange={this.props.onchange}
+                        disabled={this.props.submitDisabled}
                     >
                     </textarea>
                     <input
@@ -33,9 +35,10 @@ export default class CreatePostForm extends Component {
                         name="uploadedFile"
                         type="file"
                         onChange={this.props.fileSubmit}
+                        disabled={this.props.submitDisabled}
                     />
                 </fieldset>
-                <input className="btn btn-default" type="submit" value="Create Post"/>
+                <input className="btn btn-default" type="submit" value="Create Post" disabled={this.props.submitDisabled}/>
             </form>
         </div>
         )

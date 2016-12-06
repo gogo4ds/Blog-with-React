@@ -11,7 +11,8 @@ export default class CreatePostController extends Component{
         this.state={
             title:'',
             description:'',
-            uploadedFile:''
+            uploadedFile:'',
+            submitDisabled:false
         }
     }
     render() {
@@ -22,6 +23,7 @@ export default class CreatePostController extends Component{
                     description={this.state.description}
                     onsubmit={this.handleSubmit.bind(this)}
                     onchange={this.handleChange.bind(this)}
+                    submitDisabled={this.state.submitDisabled}
                     fileSubmit={this.handleImageChange.bind(this)}
                 />
             </div>
@@ -33,20 +35,23 @@ export default class CreatePostController extends Component{
       let newState={};
       newState[event.target.name]=event.target.files[0];
       this.setState(newState);
-      console.dir(event.target.files[0]);
     }
 
     handleSubmit(event) {
         event.preventDefault();
+        this.setState({
+            submitDisabled:true
+        });
         let file=this.state.uploadedFile;
+        if (file!=="") {
+            let metadata= {
+                '_filename':file.name,
+                'size':file.size,
+                'mimeType':file.type
+            };
 
-        let metadata= {
-            '_filename':file.name,
-            'size':file.size,
-            'mimeType':file.type
-        };
-
-        this.uploadData(metadata,file);
+            this.uploadData(metadata,file);
+        }
 
         let data={
             title:this.state.title,
@@ -64,7 +69,7 @@ export default class CreatePostController extends Component{
 
     uploadData(data,file) {
         let userCredentials=btoa('koko:123');
-        let requestURL='https://baas.kinvey.com/blob/kid_r15MCj0Mx';
+        let requestURL='https://baas.kinvey.com/blob/kid_H14WHD7Mg';
         let requestHeaders={
             'Authorization':'Basic '+userCredentials,
             'Content-Type':'application/json',
