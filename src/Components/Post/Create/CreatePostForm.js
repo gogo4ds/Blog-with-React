@@ -28,6 +28,12 @@ export default class CreatePostForm extends Component {
                         onChange={this.props.onchange}
                     >
                     </textarea>
+                    <input
+                        className="uploaded-file"
+                        name="uploadedFile"
+                        type="file"
+                        onChange={this.props.fileSubmit}
+                    />
                 </fieldset>
                 <input className="btn btn-default" type="submit" value="Create Post"/>
             </form>

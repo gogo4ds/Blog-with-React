@@ -41,11 +41,13 @@
     margin-bottom: 30px;
 }
 .form-style-5 input[type="text"]:focus,
-.form-style-5 textarea:focus {
+.form-style-5 textarea:focus,
+.form-style-5 input[type="file"] {
     background: white;
 }
 
-.form-style-5 input[type="submit"] {
+.form-style-5 input[type="submit"],
+.form-style-5 input[type="file"] {
     position: relative;
     display: block;
     padding: 19px 39px 18px 39px;
