@@ -5,6 +5,7 @@ import Header from './Components/Common/Header';
 import observer from '../src/utilities/observer';
 import Breadcrumbs from 'react-breadcrumbs';
 import Alert from 'react-s-alert';
+import Footer from './Components/Common/Footer'
 
 class App extends Component {
     constructor(){
@@ -35,6 +36,7 @@ class App extends Component {
               <Header/>
               <Breadcrumbs routes={this.props.routes} params={this.props.params} setDocumentTitle={true}/>
               {this.props.children}
+              <Footer />
               <Alert stack={{limit: 3}} />
           </div>
         );

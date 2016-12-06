@@ -4,11 +4,11 @@ import "./Footer.css";
 export default class Footer extends Component {
     render() {
         return (
-            <div className="footer">
+            <footer className="footer">
                 <span>
                     (c) SoftUni - WebStep Blog
                 </span>
-            </div>
+            </footer>
         )
     }
 }
