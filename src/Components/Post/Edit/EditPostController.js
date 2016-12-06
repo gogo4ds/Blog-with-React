@@ -11,7 +11,8 @@ export default class EditPostController extends Component {
             postTitle:'',
             postAuthor:'',
             postBody:'',
-            postDate:''
+            postDate:'',
+            submitDisabled:false
         });
 
         this.savePostInformation=this.savePostInformation.bind(this);
@@ -42,6 +43,9 @@ export default class EditPostController extends Component {
 
     onSubmitHandler(event) {
         event.preventDefault();
+        this.setState({
+            submitDisabled:true
+        });
         let editedPost={
             title:this.state.postTitle,
             author:this.state.postAuthor,
@@ -64,6 +68,7 @@ export default class EditPostController extends Component {
                     body={this.state.postBody}
                     onchange={this.onChangeHandler}
                     onsubmit={this.onSubmitHandler}
+                    submitDisabled={this.state.submitDisabled}
                 />
             </div>
         )

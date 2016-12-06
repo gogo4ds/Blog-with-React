@@ -14,6 +14,7 @@ export default class EditPostView extends Component {
                             name="postTitle"
                             required
                             value={this.props.title}
+                            disabled={this.props.submitDisabled}
                             onChange={this.props.onchange}
                         />
                         <textarea
@@ -23,11 +24,12 @@ export default class EditPostView extends Component {
                             rows="10"
                             required
                             value={this.props.body}
+                            disabled={this.props.submitDisabled}
                             onChange={this.props.onchange}
                         >
                     </textarea>
                     </fieldset>
-                    <input className="btn btn-default" type="submit" value="Edit Post"/>
+                    <input className="btn btn-default" type="submit" value="Edit Post" disabled={this.props.submitDisabled}/>
                 </form>
             </div>
         )
