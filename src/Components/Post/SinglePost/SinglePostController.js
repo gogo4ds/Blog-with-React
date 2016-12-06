@@ -11,6 +11,8 @@ import Alert from 'react-s-alert';
 
 import $ from 'jquery';
 
+import observer from '../../../../src/utilities/observer';
+
 export default class SinglePostController extends Component {
     constructor(props){
         super(props);
@@ -29,7 +31,9 @@ export default class SinglePostController extends Component {
         loadSinglePost(this.props.params.postID)
             .then(function (post) {
                 let imageURL = '';
-                let userCredentials=btoa('koko:123');
+                let username=sessionStorage.getItem('username');
+                let password=observer.password;
+                let userCredentials=btoa(username+':'+password);
                 let requestURL='https://baas.kinvey.com/blob/kid_r15MCj0Mx';
                 let requestHeaders={
                     'Authorization':'Basic '+userCredentials,

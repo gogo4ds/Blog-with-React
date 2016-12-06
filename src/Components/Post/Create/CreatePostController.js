@@ -4,6 +4,7 @@ import {create} from '../../../Models/PostModel';
 import {browserHistory} from 'react-router';
 import Alert from 'react-s-alert';
 import $ from 'jquery';
+import observer from '../../../../src/utilities/observer';
 
 export default class CreatePostController extends Component{
     constructor(props) {
@@ -12,9 +13,18 @@ export default class CreatePostController extends Component{
             title:'',
             description:'',
             uploadedFile:'',
-            submitDisabled:false
+            submitDisabled:false,
+            userPass:''
         }
     }
+
+    componentDidMount() {
+        let newState={
+            'userPass':observer.password
+        };
+        this.setState(newState);
+    }
+
     render() {
         return (
             <div>
@@ -44,7 +54,6 @@ export default class CreatePostController extends Component{
             submitDisabled:true
         });
         let file=this.state.uploadedFile;
-        console.dir(file);
 
         let data={
             title:this.state.title,
@@ -70,7 +79,9 @@ export default class CreatePostController extends Component{
     }
 
     uploadData(data,file) {
-        let userCredentials=btoa('koko:123');
+        let username=sessionStorage.getItem('username');
+        let password=this.state.userPass;
+        let userCredentials=btoa(username+":"+password);
         let requestURL='https://baas.kinvey.com/blob/kid_r15MCj0Mx';
         let requestHeaders={
             'Authorization':'Basic '+userCredentials,
@@ -100,7 +111,6 @@ export default class CreatePostController extends Component{
                         data:file
                     })
                         .then(function (success) {
-                            console.log('Successfully uploaded !');
                         })
                         .catch(function (err) {
                             console.log(err);

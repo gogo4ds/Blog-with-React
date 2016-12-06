@@ -47,6 +47,7 @@ export default class LoginController extends Component {
         UserModel.loginUser(userData).then(function (response) {
                 Session.save(response);
                 observer.sessionChange();
+                observer['password']=userData.password;
                 Alert.closeAll();
                 Alert.success('Successfully logged in', {timeout: 2000});
                 browserHistory.push('/home');
