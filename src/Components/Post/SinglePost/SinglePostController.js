@@ -34,7 +34,7 @@ export default class SinglePostController extends Component {
                 let username=sessionStorage.getItem('username');
                 let password=observer.password;
                 let userCredentials=btoa(username+':'+password);
-                let requestURL='https://baas.kinvey.com/blob/kid_r15MCj0Mx';
+                let requestURL=`https://baas.kinvey.com/blob/kid_r15MCj0Mx/?query={"postId":"${post._id}"}`;
                 let requestHeaders={
                     'Authorization':'Basic '+userCredentials,
                     'Content-Type':'application/json'
@@ -45,17 +45,13 @@ export default class SinglePostController extends Component {
                     headers:requestHeaders
                 })
                     .then (function (success) {
-                        for (let image of success) {
-                            if (sessionStorage.getItem('singlePostId')===image.postId) {
-                                let url=image._downloadURL;
-                                imageURL = image._downloadURL;
+                                let url=success[0]._downloadURL;
+                                imageURL = success[0]._downloadURL;
                                 let link=document.createElement('a');
                                 link.download=url.substr(url.lastIndexOf('/'));
                                 link.href=url;
                                 imageDiv
                                     .append(link);
-                            }
-                        }
                         _self.setState({
                             post: <SinglePost key={post._id}
                                               id={post._id}
