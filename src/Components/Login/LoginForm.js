@@ -11,14 +11,16 @@ export default class LoginForm extends Component {
                     name="username"
                     value={this.props.username}
                     onChange={this.props.onChangeHandler}
+                    disabled={this.props.submitDisabled}
                     required/>
                 <input
                     type="password"
                     placeholder="password"
                     name="password"
                     onChange={this.props.onChangeHandler}
+                    disabled={this.props.submitDisabled}
                     required/>
-                <input type="submit" value="Login"/>
+                <input type="submit" value="Login" disabled={this.props.submitDisabled}/>
             </form>
         );
     }

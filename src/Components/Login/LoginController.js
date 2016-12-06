@@ -11,7 +11,8 @@ export default class LoginController extends Component {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            submitDisabled:false
         };
 
         this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -25,6 +26,7 @@ export default class LoginController extends Component {
                 <LoginForm
                 username={this.state.username}
                 password={this.state.password}
+                submitDisabled={this.state.submitDisabled}
                 onChangeHandler={this.onChangeHandler}
                 onSubmitHandler={this.onSubmitHandler}
                 />
@@ -34,6 +36,9 @@ export default class LoginController extends Component {
 
     onSubmitHandler(ev){
         ev.preventDefault();
+        this.setState({
+            submitDisabled:true
+        });
         let userData = {
             username: this.state.username,
             password: this.state.password
