@@ -39,17 +39,23 @@ export default class LoginController extends Component {
         this.setState({
             submitDisabled:true
         });
+        let that=this;
         let userData = {
             username: this.state.username,
             password: this.state.password
         };
         UserModel.loginUser(userData).then(function (response) {
-            Session.save(response);
-            observer.sessionChange();
-            Alert.closeAll();
-            Alert.success('Successfully logged in', {timeout: 2000});
-            browserHistory.push('/home');
-        });
+                Session.save(response);
+                observer.sessionChange();
+                Alert.closeAll();
+                Alert.success('Successfully logged in', {timeout: 2000});
+                browserHistory.push('/home');
+        })
+            .catch(function (err) {
+                that.setState({
+                    submitDisabled:false
+                });
+            })
     }
 
     onChangeHandler(event){
