@@ -35,12 +35,13 @@ class App extends Component {
           <div className="App">
               <Header/>
               <Breadcrumbs routes={this.props.routes} params={this.props.params} setDocumentTitle={true}/>
-              {this.props.children}
+              <div style={{minHeight: "488"}}>
+                 {this.props.children}
+              </div>
               <Footer />
               <Alert stack={{limit: 3}} />
           </div>
         );
-    //TODO: Footer
     }
 }
 

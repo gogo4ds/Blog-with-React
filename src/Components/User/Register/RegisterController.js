@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import RegisterForm from './RegisterForm'
-import ImageUploader from '../../Image/ImageUploader'
 import UserModel from '../../../Models/UserModel';
 import Session from '../../../utilities/sessionStorageManager';
 import observer from '../../../utilities/observer';
@@ -34,7 +33,6 @@ export default class RegisterController extends Component {
             submitDisabled={this.state.submitDisabled}
             />
             <div className="image-uploader">
-                <ImageUploader/>
             </div>
         </div>
         )
