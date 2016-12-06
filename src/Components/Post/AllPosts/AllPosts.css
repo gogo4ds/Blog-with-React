@@ -22,9 +22,11 @@
     width: 800px;
     height: auto;
     margin: 20px 20px 20px 20px;
-    border: solid #42464b 2px;
+    border: solid #42464b 1px;
     padding: 20px 20px;
     float: left;
+    box-shadow: 10px 10px 5px #cccccc;
+    border-radius: 7px;
 }
 
 .post link {
