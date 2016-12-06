@@ -82,7 +82,7 @@ export default class AllPostsController extends Component {
                     _self.postsPerPage.push(<Post key={post._id}
                                      id={post._id}
                                      title={post.title}
-                                     body={post.body.length>100 ?
+                                     body={post.body.length > 100 ?
                                      post.body.substring(0,200)+"..."
                                          :
                                          post.body
