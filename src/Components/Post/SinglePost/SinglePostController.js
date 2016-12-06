@@ -86,6 +86,10 @@ export default class SinglePostController extends Component {
             margin:'10px 20px 50px 50px'
         };
         if(this.state.post){
+            let currentLocation = this.props.location.pathname.split('/').pop();
+            if(currentLocation === 'delete' || currentLocation === 'edit'){
+                return <div>{this.props.children}</div>
+            }
             return (
                 <div className="container-fluid">
                     <div className="row">

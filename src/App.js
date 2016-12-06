@@ -35,7 +35,7 @@ class App extends Component {
           <div className="App">
               <Header/>
               <Breadcrumbs routes={this.props.routes} params={this.props.params} setDocumentTitle={true}/>
-              <div style={{minHeight: "488"}}>
+              <div style={{minHeight: "488px"}}>
                  {this.props.children}
               </div>
               <Footer />
