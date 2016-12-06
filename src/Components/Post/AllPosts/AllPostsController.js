@@ -77,10 +77,10 @@ export default class AllPostsController extends Component {
                         let allPostsComments=[];
                         for (let i=0;i<5;i++) {
 
-                            let comments=mostCommentedPosts[keys[i]].comments;
+                            let postComments=mostCommentedPosts[keys[i]].comments;
                             let postTitle=mostCommentedPosts[keys[i]].title;
-                            if (comments>3) {
-                                allPostsComments.push(<div className="list-group-item" key={i}><div><Link to={'/posts/' + keys[i]}>{postTitle}</Link></div><div className="pulse"><strong>{comments}</strong></div></div>);
+                            if (postComments>3) {
+                                allPostsComments.push(<div className="list-group-item" key={i}><div><Link to={'/posts/' + keys[i]}>{postTitle}</Link></div><div className="pulse"><strong>{postComments}</strong></div></div>);
 
                                 _self.setState({
                                     mostCommentedPosts:allPostsComments
