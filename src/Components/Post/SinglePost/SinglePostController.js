@@ -45,13 +45,17 @@ export default class SinglePostController extends Component {
                     headers:requestHeaders
                 })
                     .then (function (success) {
-                                let url=success[0]._downloadURL;
-                                imageURL = success[0]._downloadURL;
+                        for (let image of success) {
+                            if (sessionStorage.getItem('singlePostId')===image.postId) {
+                                let url=image._downloadURL;
+                                imageURL = image._downloadURL;
                                 let link=document.createElement('a');
                                 link.download=url.substr(url.lastIndexOf('/'));
                                 link.href=url;
                                 imageDiv
                                     .append(link);
+                            }
+                        }
                         _self.setState({
                             post: <SinglePost key={post._id}
                                               id={post._id}
