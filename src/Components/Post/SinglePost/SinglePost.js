@@ -30,7 +30,7 @@ export default class SinglePost extends Component {
                     <div className="page-header">
                         <h1 className="post-title">{this.props.title}</h1>
                         <br/>
-                        <img src={this.props.image} role="presentation"/>
+                        <img className="single-post-img" src={this.props.imageURL} role="presentation"/>
                         <p>Posted by  <span className="glyphicon glyphicon-user"/> <a href="#">{this.props.author}</a> on <span className="glyphicon glyphicon-time">{this.props.date.substring(0, 10)}</span>
                             <span className="post-buttons">{this.props.postCreator===sessionStorage.getItem('userID') ?
                             <span>

@@ -28,6 +28,7 @@ export default class SinglePostController extends Component {
         let imageDiv=$('<div>');
         loadSinglePost(this.props.params.postID)
             .then(function (post) {
+                let imageURL = '';
                 let userCredentials=btoa('koko:123');
                 let requestURL='https://baas.kinvey.com/blob/kid_r15MCj0Mx';
                 let requestHeaders={
@@ -43,31 +44,32 @@ export default class SinglePostController extends Component {
                         for (let image of success) {
                             if (sessionStorage.getItem('singlePostId')===image.postId) {
                                 let url=image._downloadURL;
+                                imageURL = image._downloadURL;
                                 let link=document.createElement('a');
                                 link.download=url.substr(url.lastIndexOf('/'));
                                 link.href=url;
                                 imageDiv
                                     .append(link);
-                                link.click();
                             }
                         }
+                        _self.setState({
+                            post: <SinglePost key={post._id}
+                                              id={post._id}
+                                              title={post.title}
+                                              body={post.body}
+                                              author={post.author}
+                                              date={post.date}
+                                              postCreator={post._acl.creator}
+                                              image={imageDiv}
+                                              imageURL={imageURL}
+                            />,
+                            postId:post._id
+                        });
                 })
                     .catch(function (err) {
                         console.log(err);
                     })
                 ;
-            _self.setState({
-                post: <SinglePost key={post._id}
-                                  id={post._id}
-                                  title={post.title}
-                                  body={post.body}
-                                  author={post.author}
-                                  date={post.date}
-                                  postCreator={post._acl.creator}
-                                  image={imageDiv}
-                />,
-                postId:post._id
-            });
         });
         loadComments()
             .then(function (comments) {
