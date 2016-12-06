@@ -9,7 +9,9 @@ export default class SideBar extends Component {
                     <h4 className="panel-title"><strong>Most commented posts</strong></h4>
                 </div>
                 <div className="list-group margin-b-3">
-                    {this.props.children}
+                    <span>
+                        {this.props.postsTitles}
+                    </span>
                 </div>
             </div>
         </div>

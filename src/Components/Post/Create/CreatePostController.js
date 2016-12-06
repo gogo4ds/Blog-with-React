@@ -38,20 +38,13 @@ export default class CreatePostController extends Component{
     }
 
     handleSubmit(event) {
+        let that=this;
         event.preventDefault();
         this.setState({
             submitDisabled:true
         });
         let file=this.state.uploadedFile;
-        if (file!=="") {
-            let metadata= {
-                '_filename':file.name,
-                'size':file.size,
-                'mimeType':file.type
-            };
-
-            this.uploadData(metadata,file);
-        }
+        console.dir(file);
 
         let data={
             title:this.state.title,
@@ -61,6 +54,15 @@ export default class CreatePostController extends Component{
         };
         create(data)
             .then(function (response) {
+                if (file!=="") {
+                    let metadata= {
+                        '_filename':file.name,
+                        'size':file.size,
+                        'mimeType':file.type,
+                        'postId':response._id
+                    };
+                    that.uploadData(metadata,file);
+                }
                 Alert.closeAll();
                 Alert.success('Post created !', {timeout: 2000});
                 browserHistory.push('/posts')
@@ -69,7 +71,7 @@ export default class CreatePostController extends Component{
 
     uploadData(data,file) {
         let userCredentials=btoa('koko:123');
-        let requestURL='https://baas.kinvey.com/blob/kid_H14WHD7Mg';
+        let requestURL='https://baas.kinvey.com/blob/kid_r15MCj0Mx';
         let requestHeaders={
             'Authorization':'Basic '+userCredentials,
             'Content-Type':'application/json',
@@ -88,21 +90,21 @@ export default class CreatePostController extends Component{
                 innerHeaders['Content-Type']=file.type;
 
                 let uploadUrl=success._uploadURL;
-                let id=success._id;
+                //let id=success._id;
 
-                $.ajax({
-                    method:'PUT',
-                    url:uploadUrl,
-                    headers:innerHeaders,
-                    processData:false,
-                    data:file
-                })
-                    .then(function (success) {
-                        console.log('Successfully uploaded !');
+                    $.ajax({
+                        method:'PUT',
+                        url:uploadUrl,
+                        headers:innerHeaders,
+                        processData:false,
+                        data:file
                     })
-                    .catch(function (err) {
-                        console.log(err);
-                    })
+                        .then(function (success) {
+                            console.log('Successfully uploaded !');
+                        })
+                        .catch(function (err) {
+                            console.log(err);
+                        })
             })
             .catch(function (err) {
                 console.log(err);

@@ -13,6 +13,7 @@ export default class AllPostsController extends Component {
         this.state = {
             posts: new Map(),
             current: 0,
+            mostCommentedPosts:{}
         };
         this.requester = new Requester('Kinvey');
         this.prevPages=[0];
@@ -56,7 +57,17 @@ export default class AllPostsController extends Component {
     componentDidMount(){
         let _self = this;
         this.postsPerPage = [];
+        let mostCommentedPosts={};
         this.requester.ajaxGET('appdata', 'posts').then(function (success){
+            for (let post of success) {
+                _self.requester.ajaxGET('appdata', `comments/?query={"postID":"${post._id}"}`)
+                    .then(function (comments) {
+                        mostCommentedPosts[post.title]=comments.length;
+                        _self.setState({
+                            mostCommentedPosts:mostCommentedPosts
+                        })
+                    });
+            }
             _self.pagesCount = Math.ceil(success.length/4);
             _self.requester.ajaxGET('appdata', 'posts/?query={}&sort={"date":-1}&limit=4&skip=0').then(function (success) {
                 for(let post of success){
@@ -86,7 +97,9 @@ export default class AllPostsController extends Component {
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-sm-12">
-                                <SideBar/>
+                                <SideBar
+                                    postsTitles={Object.keys(this.state.mostCommentedPosts)}
+                                />
                                 <div className="posts-view col-sm-8">
                                     <h1>All Posts</h1>
                                     {this.state.posts.get(`page${this.state.current}`)}
