@@ -63,16 +63,29 @@ export default class AllPostsController extends Component {
             for (let post of success) {
                 _self.requester.ajaxGET('appdata', `comments/?query={"postID":"${post._id}"}`)
                     .then(function (comments) {
-                        mostCommentedPosts[post.title]=comments.length;
+                        let commentsLength=comments.length;
+                        let postTitle=post.title;
+                        mostCommentedPosts[post._id]={};
+                        let obj={
+                            title:postTitle,
+                            comments:commentsLength
+                        };
+                        mostCommentedPosts[post._id]=obj;
                         let keys=Object.keys(mostCommentedPosts).sort(function (postA,postB) {
-                            return mostCommentedPosts[postB]-mostCommentedPosts[postA];
+                            return mostCommentedPosts[postB].comments-mostCommentedPosts[postA].comments;
                         });
                         let allPostsComments=[];
                         for (let i=0;i<5;i++) {
-                            allPostsComments.push(<div key={i}><Link>{keys[i]}</Link></div>);
-                            _self.setState({
-                                mostCommentedPosts:allPostsComments
-                            });
+
+                            let comments=mostCommentedPosts[keys[i]].comments;
+                            let postTitle=mostCommentedPosts[keys[i]].title;
+                            if (comments>3) {
+                                allPostsComments.push(<div className="list-group-item" key={i}><div><Link to={'/posts/' + keys[i]}>{postTitle}</Link></div><div className="pulse"><strong>{comments}</strong></div></div>);
+
+                                _self.setState({
+                                    mostCommentedPosts:allPostsComments
+                                });
+                            }
                         }
                     });
             }
