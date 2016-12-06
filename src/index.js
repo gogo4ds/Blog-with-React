@@ -25,7 +25,6 @@ ReactDOM.render(
             <Route name="Login" path="/login" component={Login}/>
             <Route name="Register" path="/register" component={Register}/>
             <Route name="Logout" path="/logout" component={Logout}/>
-            <Route name="Posts" path="/posts" component={Posts}/>
             <Route name="Posts" path="/posts">
                 <IndexRoute component={Posts}/>
                 <Route name="PostLocator" path=":postID" component={SinglePost}>
