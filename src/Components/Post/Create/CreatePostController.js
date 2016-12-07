@@ -93,7 +93,8 @@ export default class CreatePostController extends Component{
             method:'POST',
             url:requestURL,
             headers:requestHeaders,
-            data:JSON.stringify(data)
+            data:JSON.stringify(data),
+            "_public":true
         })
             .then (function (success) {
                 let innerHeaders=success._requiredHeaders;

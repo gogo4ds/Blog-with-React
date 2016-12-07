@@ -20,19 +20,24 @@ export default class SinglePostController extends Component {
             post: null,
             postId:null,
             postComments:[],
-            commentBody:null
+            commentBody:null,
+            userPass:''
         }
     }
 
     componentDidMount(){
         let _self = this;
+        let newState={
+            'userPass':observer.password
+        };
+        _self.setState(newState);
         sessionStorage.setItem('singlePostId',this.props.params.postID);
         let imageDiv=$('<div>');
         loadSinglePost(this.props.params.postID)
             .then(function (post) {
                 let imageURL = '';
                 let username=sessionStorage.getItem('username');
-                let password=observer.password;
+                let password=this.state.userPass;
                 let userCredentials=btoa(username+':'+password);
                 let requestURL=`https://baas.kinvey.com/blob/kid_r15MCj0Mx/?query={"postId":"${post._id}"}`;
                 let requestHeaders={
