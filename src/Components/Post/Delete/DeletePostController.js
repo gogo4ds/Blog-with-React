@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import Requester from '../../../utilities/KinveyRequester'
-import Alert from 'react-s-alert'
+import Alert from 'react-s-alert';
 import {browserHistory} from 'react-router';
-import DeletePostForm from './DeletePostForm'
+import DeletePostForm from './DeletePostForm';
+
+import {loadSinglePost,deletePost} from '../../../Models/PostModel';
+import {getCommentsByPostId,deleteComment} from '../../../Models/CommentModel';
 
 export default class DeletePostController extends Component {
     constructor(props) {
@@ -11,13 +13,13 @@ export default class DeletePostController extends Component {
             postID: null,
             post: null
         });
-        this.requester = new Requester('Kinvey');
         this.ondelete = this.ondelete.bind(this);
     }
 
     componentDidMount(){
         let _self = this;
-        this.requester.ajaxGET('appdata', 'posts', this.props.params.postID).then(function (post) {
+        loadSinglePost(this.props.params.postID)
+            .then(function (post) {
            _self.setState({
                postID: post._id,
                post: <DeletePostForm title={post.title} body={post.body} author={post.author} ondelete={_self.ondelete}/>
@@ -39,24 +41,24 @@ export default class DeletePostController extends Component {
 
     ondelete(ev){
         ev.preventDefault();
-        this.requester.ajaxGET('appdata',`comments/?query={"postID":"${this.state.postID}"}`)
+        getCommentsByPostId(this.state.postID)
             .then(function (comments) {
                 if (comments.length>0) {
-                    let requester=new Requester('Kinvey');
                     for (let comment of comments) {
-                        requester.ajaxDELETE('appdata','comments',comment._id)
+                        deleteComment(comment._id);
                     }
                 }
             })
             .then(
-                this.requester.ajaxDELETE('appdata', 'posts', this.state.postID).then(function (success) {
-                    browserHistory.push('/posts');
-                    Alert.success('Post Deleted', {
-                        timeout: 1500,
-                        effect: 'bouncyflip',
-                        position: 'bottom',
-                        offset: 50
-                    })
+                deletePost(this.state.postID)
+                    .then(function (success) {
+                        browserHistory.push('/posts');
+                        Alert.success('Post Deleted', {
+                            timeout: 1500,
+                            effect: 'bouncyflip',
+                            position: 'bottom',
+                            offset: 50
+                        })
                 })
             )
     }

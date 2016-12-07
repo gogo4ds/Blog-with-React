@@ -15,11 +15,17 @@ function getCommentsByPostId(postId) {
     return requester.ajaxGET('appdata', `comments/?query={"postID":"${postId}"}`)
 }
 
+function deleteComment(commentId) {
+    let requester=new Requester('Kinvey');
+    return requester.ajaxDELETE('appdata','comments',commentId)
+}
+
 
 export {
     createComment,
     loadComments,
-    getCommentsByPostId
+    getCommentsByPostId,
+    deleteComment
 };
 
 

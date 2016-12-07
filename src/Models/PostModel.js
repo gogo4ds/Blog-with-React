@@ -25,11 +25,17 @@ function editPost(postId,data) {
     return requester.ajaxPUT('appdata','posts',postId,data);
 }
 
+function deletePost(postId) {
+    let requester=new Requester('Kinvey');
+    return requester.ajaxDELETE('appdata','posts',postId)
+}
+
 export {
         loadPosts,
         create,
         loadSinglePost,
         editPost,
+        deletePost,
         getImage
 };
 
