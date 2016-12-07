@@ -68,7 +68,8 @@ export default class CreatePostController extends Component{
                         '_filename':file.name,
                         'size':file.size,
                         'mimeType':file.type,
-                        'postId':response._id
+                        'postId':response._id,
+                        "_public":true
                     };
                     that.uploadData(metadata,file);
                 }
@@ -93,8 +94,7 @@ export default class CreatePostController extends Component{
             method:'POST',
             url:requestURL,
             headers:requestHeaders,
-            data:JSON.stringify(data),
-            "_public":true
+            data:JSON.stringify(data)
         })
             .then (function (success) {
                 let innerHeaders=success._requiredHeaders;
