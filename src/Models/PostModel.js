@@ -15,6 +15,11 @@ function loadSinglePost(postId) {
     return requester.ajaxGET('appdata','posts',postId);
 }
 
+function getImage(postId) {
+    let requester=new Requester('Kinvey');
+    return requester.ajaxGET('blob', `?query={"postId":"${postId}"}`);
+}
+
 function editPost(postId,data) {
     let requester=new Requester('Kinvey');
     return requester.ajaxPUT('appdata','posts',postId,data);
@@ -24,7 +29,8 @@ export {
         loadPosts,
         create,
         loadSinglePost,
-        editPost
+        editPost,
+        getImage
 };
 
 

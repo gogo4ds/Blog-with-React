@@ -4,7 +4,7 @@ import SinglePost from '../SinglePost/SinglePost'
 import SingleComment from '../../Comment/SingleComment';
 import CommentForm from '../../Comment/Create/CommentForm';
 
-import {loadSinglePost} from '../../../Models/PostModel';
+import {loadSinglePost, getImage} from '../../../Models/PostModel';
 import {createComment,loadComments} from '../../../Models/CommentModel';
 
 import Alert from 'react-s-alert';
@@ -36,27 +36,17 @@ export default class SinglePostController extends Component {
         loadSinglePost(this.props.params.postID)
             .then(function (post) {
                 let imageURL = '';
-                let username=sessionStorage.getItem('username');
-                let password=this.state.userPass;
-                let userCredentials=btoa(username+':'+password);
-                let requestURL=`https://baas.kinvey.com/blob/kid_r15MCj0Mx/?query={"postId":"${post._id}"}`;
-                let requestHeaders={
-                    'Authorization':'Basic '+userCredentials,
-                    'Content-Type':'application/json'
-                };
-                $.ajax({
-                    method:'GET',
-                    url:requestURL,
-                    headers:requestHeaders
-                })
+                getImage(post._id)
                     .then (function (success) {
-                                let url=success[0]._downloadURL;
-                                imageURL = success[0]._downloadURL;
-                                let link=document.createElement('a');
-                                link.download=url.substr(url.lastIndexOf('/'));
-                                link.href=url;
-                                imageDiv
-                                    .append(link);
+                        if(success.length > 0){
+                            let url=success[0]._downloadURL;
+                            imageURL = success[0]._downloadURL;
+                            let link=document.createElement('a');
+                            link.download=url.substr(url.lastIndexOf('/'));
+                            link.href=url;
+                            imageDiv
+                                .append(link);
+                        }
                         _self.setState({
                             post: <SinglePost key={post._id}
                                               id={post._id}
