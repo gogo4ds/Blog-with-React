@@ -10,10 +10,16 @@ function loadComments() {
     return requester.ajaxGET('appdata','comments');
 }
 
+function getCommentsByPostId(postId) {
+    let requester=new Requester('Kinvey');
+    return requester.ajaxGET('appdata', `comments/?query={"postID":"${postId}"}`)
+}
+
 
 export {
     createComment,
-    loadComments
+    loadComments,
+    getCommentsByPostId
 };
 
 

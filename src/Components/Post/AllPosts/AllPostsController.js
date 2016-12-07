@@ -7,6 +7,8 @@ import '../../Common/SideBar.css';
 import Pager from 'rc-pager';
 import 'rc-pager/assets/bootstrap.css';
 import {Link} from 'react-router';
+import {loadPosts} from '../../../Models/PostModel';
+import {getCommentsByPostId} from '../../../Models/CommentModel';
 
 export default class AllPostsController extends Component {
     constructor(props){
@@ -59,9 +61,9 @@ export default class AllPostsController extends Component {
         let _self = this;
         this.postsPerPage = [];
         let mostCommentedPosts={};
-        this.requester.ajaxGET('appdata', 'posts').then(function (success){
+        loadPosts().then(function (success){
             for (let post of success) {
-                _self.requester.ajaxGET('appdata', `comments/?query={"postID":"${post._id}"}`)
+                getCommentsByPostId(post._id)
                     .then(function (comments) {
                         let commentsLength=comments.length;
                         let postTitle=post.title;
