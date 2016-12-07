@@ -31,7 +31,7 @@ export default class SinglePost extends Component {
                         <h1 className="post-title">{this.props.title}</h1>
                         <br/>
                         <img className="single-post-img" src={this.props.imageURL} role="presentation"/>
-                        <p>Posted by  <span className="glyphicon glyphicon-user"/> <a href="#">{this.props.author}</a> on <span className="glyphicon glyphicon-time">{this.props.date.substring(0, 10)}</span>
+                        <p>Posted by  <span className="glyphicon glyphicon-user"/> <span>{this.props.author}</span> on <span className="glyphicon glyphicon-time">{this.props.date.substring(0, 10)}</span>
                             <span className="post-buttons">{this.props.postCreator===sessionStorage.getItem('userID') ?
                             <span>
                                 <button className="btn btn-primary" onClick={this.handleClick.bind(this)}>Edit</button> <button className="btn btn-primary" onClick={this.handleDelete.bind(this)}>Delete</button>
